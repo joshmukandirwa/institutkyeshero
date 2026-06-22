@@ -1,0 +1,658 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Espace Numérique - Institut Kyeshero</title>
+  <link rel="stylesheet" href="numerique.css">
+</head>
+
+<body>
+  <!-- ════════════ PAGE LOGIN ════════════ -->
+  <div id="page-login">
+    <div class="topbar">
+      <span>Institut Kyeshero</span>
+      <a href="index.html">← Retour au site</a>
+    </div>
+
+    <div class="login-hero">
+      <div class="shield">
+        <img src="/IMG-20260512-WA0002.jpg" alt="logo institut kyeshero">
+      </div>
+      <h1>Espace Numérique</h1>
+      <p>Institut Kyeshero</p>
+      <div class="badge">Accès sécurisé - Élèves uniquement</div>
+    </div>
+
+    <div class="login-card">
+      <h2>Connexion</h2>
+      <p class="sub">Entrez vos informations pour accéder à vos résultats.</p>
+
+      <div class="field">
+        <label>Numéro Matricule</label>
+        <input type="text" id="matricule" placeholder="Ex : A0010" maxlength="10"
+          oninput="this.value=this.value.toUpperCase()" />
+        <div class="hint">Format : lettre(s) + chiffres · ex: A0010</div>
+      </div>
+
+      <div class="field">
+        <label>Date de Naissance</label>
+        <input type="date" id="datenais" />
+      </div>
+
+      <div class="field">
+        <label>Classe</label>
+        <select id="classe">
+          <option value="">— Sélectionnez votre classe —</option>
+        </select>
+      </div>
+
+      <button class="btn-login" id="btnLogin" onclick="seConnecter()">SE CONNECTER</button>
+
+      <div class="error-box" id="errorBox">
+        <div class="ico">🚫</div>
+        <p id="errorMsg"><strong>Informations incorrectes</strong>Matricule, date de naissance ou classe invalide.
+          Vérifiez vos données.</p>
+      </div>
+
+      <div class="blocked-box" id="blockedBox">
+        <div class="lock">🔒</div>
+        <h3>Accès Bloqué</h3>
+        <p>Trop de tentatives incorrectes.<br>Réessayez dans :</p>
+        <div class="countdown" id="countdown">30</div>
+        <p>secondes — ou contactez l'administration.</p>
+      </div>
+
+      <div class="attempts" id="attemptsInfo" style="display:none;">
+        Tentatives restantes : <span id="attemptsLeft">2</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ════════════ PAGE DASHBOARD ════════════ -->
+  <div id="page-dashboard">
+
+    <div class="dash-header">
+      <div class="logo">
+        <div class="shield">
+          <img src="/IMG-20260512-WA0002.jpg">
+        </div>
+        <span>Espace Numérique</span>
+      </div>
+      <button class="btn-logout" onclick="seDeconnecter()">Déconnexion</button>
+    </div>
+
+    <div class="dash-body">
+
+      <!-- Profil -->
+      <div class="profil-card">
+        <div class="avatar">👤</div>
+        <div class="profil-info">
+          <h2 id="nomEleve">—</h2>
+          <p id="matriculeEleve">Matricule : —</p>
+          <p id="classeEleve">Classe : —</p>
+          <div class="profil-badges">
+            <span class="badge-pill">📅 Année 2024-2025</span>
+            <span class="badge-pill" id="sectionBadge">—</span>
+            <span class="badge-pill">🏫 ITK</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Informations financières et sessions (toujours visible) -->
+      <div class="info-card" id="infoCard">
+        <h3>Informations financières & sessions</h3>
+        <div class="info-grid">
+          <div class="info-item">
+            <span class="label">Montant payé</span>
+            <span class="value paye" id="montantPaye">— FC</span>
+          </div>
+          <div class="info-item">
+            <span class="label">Reste à payer</span>
+            <span class="value reste" id="resteAPayer">— FC</span>
+          </div>
+          <div class="info-item">
+            <span class="label">Nombre de sessions</span>
+            <span class="value" id="nbSessions">—</span>
+          </div>
+          <div class="info-item">
+            <span class="label">Cours de la session</span>
+            <div class="cours-list" id="coursSession">—</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Carte des notes -->
+      <div class="notes-card">
+        <div class="card-head">
+          <h3>Bulletin des Notes - Année 2024-2025</h3>
+          <div class="session-tabs" id="sessionTabs">
+            <button class="active" data-session="1" onclick="changerSession(1)">1ère Session</button>
+            <button data-session="2" onclick="changerSession(2)">2ème Session</button>
+          </div>
+        </div>
+
+        <!-- Zone des notes (affichée si frais payés) -->
+        <div id="notesContent">
+          <div class="stats-row">
+            <div class="stat-card excel">
+              <div class="num" id="statMoy">—</div>
+              <div class="lbl">Moyenne Générale / 20</div>
+            </div>
+            <div class="stat-card green">
+              <div class="num" id="statRang">—</div>
+              <div class="lbl">Rang dans la classe</div>
+            </div>
+            <div class="stat-card or">
+              <div class="num" id="statMatieres">—</div>
+              <div class="lbl">Matières</div>
+            </div>
+            <div class="stat-card" id="statResultat">
+              <div class="num" id="statStatut">—</div>
+              <div class="lbl">Statut</div>
+            </div>
+          </div>
+
+          <table>
+            <thead>
+              <tr>
+                <th>Matière</th>
+                <th>Note / 20</th>
+                <th>Appréciation</th>
+                <th>Progression</th>
+              </tr>
+            </thead>
+            <tbody id="notesBody">
+            </tbody>
+          </table>
+
+          <div style="padding:20px 24px;">
+            <div class="result-footer">
+              <div>
+                <div class="big" id="moyFinale">—/20</div>
+                <div class="lbl">Moyenne Générale</div>
+              </div>
+              <div>
+                <div class="big" id="rangFinal">—</div>
+                <div class="lbl">Rang / <span id="totalEleves">—</span> élèves</div>
+              </div>
+              <div>
+                <div class="mention-finale" id="mentionFinale">—</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Message de blocage (affiché si frais impayés) -->
+        <div id="blockedNotesMsg" style="display:none;">
+          <div class="blocked-notes-msg">
+            <div class="big-lock">🔒</div>
+            <h3>Accès aux résultats bloqué</h3>
+            <p>Veuillez passer à la comptabilité pour finaliser les frais scolaires afin d'avoir l'accès à vos résultats
+              de fin d'année.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Absences -->
+      <div class="absences-card">
+        <h3>📅 Absences & Présences</h3>
+        <div id="absencesList"></div>
+      </div>
+
+    </div>
+  </div>
+
+  <script>
+    /* ══ PERSISTANCE DU BLOCAGE ══ */
+    var CLE_TENTATIVES = 'ikg_tentatives';
+    var CLE_BLOCAGE_FIN = 'ikg_blocage_fin';
+    var maxTentatives = 3;
+    var timerBlock;
+
+    var _store = {};
+    function lsGet(k) { try { return localStorage.getItem(k); } catch (e) { return _store[k] || null; } }
+    function lsSet(k, v) { try { localStorage.setItem(k, v); } catch (e) { _store[k] = String(v); } }
+    function lsDel(k) { try { localStorage.removeItem(k); } catch (e) { delete _store[k]; } }
+
+    var tentatives = parseInt(lsGet(CLE_TENTATIVES) || '0');
+    var blocageFin = parseInt(lsGet(CLE_BLOCAGE_FIN) || '0');
+    var bloque = false;
+
+    window.addEventListener('load', function () {
+      var maintenant = Date.now();
+      if (blocageFin > maintenant) {
+        reprendreBlocage(blocageFin);
+      } else if (blocageFin > 0 && blocageFin <= maintenant) {
+        lsDel(CLE_TENTATIVES);
+        lsDel(CLE_BLOCAGE_FIN);
+        tentatives = 0;
+        bloque = false;
+      }
+      peuplerClasses();
+    });
+
+    function reprendreBlocage(fin) {
+      bloque = true;
+      document.getElementById('errorBox').classList.remove('show');
+      document.getElementById('attemptsInfo').style.display = 'none';
+      document.getElementById('blockedBox').classList.add('show');
+      document.getElementById('btnLogin').disabled = true;
+      document.getElementById('btnLogin').style.opacity = '.5';
+
+      var cd = document.getElementById('countdown');
+      timerBlock = setInterval(function () {
+        var restant = Math.ceil((fin - Date.now()) / 1000);
+        if (restant <= 0) {
+          clearInterval(timerBlock);
+          bloque = false;
+          tentatives = 0;
+          lsDel(CLE_TENTATIVES);
+          lsDel(CLE_BLOCAGE_FIN);
+          document.getElementById('blockedBox').classList.remove('show');
+          document.getElementById('btnLogin').disabled = false;
+          document.getElementById('btnLogin').style.opacity = '1';
+        } else {
+          cd.textContent = restant;
+        }
+      }, 500);
+      cd.textContent = Math.ceil((fin - Date.now()) / 1000);
+    }
+
+    /* ══ BASE DE DONNÉES (50 élèves issue du fichier) ══ */
+    var rawData = [
+      { matricule: "A0010", nom: "Kasongo Jean", datenais: "2010-12-14", classe: "1ère", option: "Construction", frais: 800000, paye: 186008, reste: 613992, points: 47, cours: "", sessions: "" },
+      { matricule: "A0011", nom: "Mukendi Paul", datenais: "2003-06-19", classe: "4ème", option: "Coupe et couture", frais: 800000, paye: 141485, reste: 658515, points: 52, cours: "Histoire et Ecm", sessions: "2" },
+      { matricule: "A0012", nom: "Kabeya David", datenais: "2008-07-25", classe: "4ème", option: "Construction", frais: 800000, paye: 355210, reste: 444790, points: 75, cours: "Math", sessions: "1" },
+      { matricule: "A0013", nom: "Mwamba Junior", datenais: "2005-01-23", classe: "4ème", option: "Mécanique", frais: 800000, paye: 331604, reste: 468396, points: 89, cours: "", sessions: "" },
+      { matricule: "A0014", nom: "Ilunga Patrick", datenais: "2007-02-17", classe: "7e", option: "", frais: 800000, paye: 326116, reste: 473884, points: 85, cours: "", sessions: "" },
+      { matricule: "A0015", nom: "Tshibangu Grace", datenais: "2004-07-15", classe: "4ème", option: "Électricité", frais: 800000, paye: 496462, reste: 303538, points: 88, cours: "Electro, Math, Infos et ECM", sessions: "3" },
+      { matricule: "A0016", nom: "Kanku Sarah", datenais: "2013-09-15", classe: "3ème", option: "Coupe et couture", frais: 800000, paye: 305558, reste: 494442, points: 84, cours: "Math et Essay...", sessions: "2" },
+      { matricule: "A0017", nom: "Mbuyi Esther", datenais: "2009-06-19", classe: "4ème", option: "Mécanique", frais: 800000, paye: 621440, reste: 178560, points: 95, cours: "RDM, Geo et Fr", sessions: "3" },
+      { matricule: "A0018", nom: "Kalala Ruth", datenais: "2006-05-18", classe: "3ème", option: "Électricité", frais: 800000, paye: 522346, reste: 277654, points: 88, cours: "RDM et Infos", sessions: "2" },
+      { matricule: "A0019", nom: "Lukusa Joel", datenais: "2011-04-18", classe: "1ère", option: "Électricité", frais: 800000, paye: 126761, reste: 673239, points: 49, cours: "", sessions: "" },
+      { matricule: "A0020", nom: "Kabongo Alain", datenais: "2014-03-16", classe: "8e", option: "", frais: 800000, paye: 662925, reste: 137075, points: 64, cours: "", sessions: "" },
+      { matricule: "A0021", nom: "Mikobi Prince", datenais: "2005-06-09", classe: "1ère", option: "Construction", frais: 800000, paye: 800000, reste: 328273, points: 80, cours: "DI, Elec et Anglais", sessions: "3" },
+      { matricule: "A0022", nom: "Tshala Kevin", datenais: "2008-05-17", classe: "4ème", option: "Construction", frais: 800000, paye: 117438, reste: 682562, points: 59, cours: "DI et Elec", sessions: "2" },
+      { matricule: "A0023", nom: "Mwamba Samuel", datenais: "2010-02-04", classe: "4ème", option: "Électricité", frais: 800000, paye: 132036, reste: 667964, points: 46, cours: "", sessions: "" },
+      { matricule: "A0024", nom: "Kitenge Boris", datenais: "2009-09-07", classe: "4ème", option: "Mécanique", frais: 800000, paye: 453857, reste: 346143, points: 80, cours: "", sessions: "" },
+      { matricule: "A0025", nom: "Mutombo Didier", datenais: "2012-01-17", classe: "4ème", option: "Mécanique", frais: 800000, paye: 165351, reste: 634649, points: 64, cours: "", sessions: "" },
+      { matricule: "A0026", nom: "Kasereka Moise", datenais: "2011-07-10", classe: "3ème", option: "", frais: 800000, paye: 614918, reste: 185082, points: 73, cours: "", sessions: "" },
+      { matricule: "A0027", nom: "Mujinga Chantal", datenais: "2011-09-15", classe: "1ère", option: "Construction", frais: 800000, paye: 599388, reste: 200612, points: 62, cours: "ECM et Geo", sessions: "2" },
+      { matricule: "A0028", nom: "Lumbu Daniel", datenais: "2007-06-11", classe: "4ème", option: "", frais: 800000, paye: 640091, reste: 159909, points: 53, cours: "", sessions: "" },
+      { matricule: "A0029", nom: "Mamba Steve", datenais: "2003-07-06", classe: "1ère", option: "", frais: 800000, paye: 800000, reste: 0, points: 69, cours: "", sessions: "" },
+      { matricule: "A0030", nom: "Mayala Ben", datenais: "2010-04-12", classe: "3ème", option: "Coupe et couture", frais: 800000, paye: 171322, reste: 628678, points: 44, cours: "", sessions: "" },
+      { matricule: "A0031", nom: "Mputu Hervé", datenais: "2005-11-04", classe: "4ème", option: "Électricité", frais: 800000, paye: 372970, reste: 427030, points: 79, cours: "Techno Elec et Elo", sessions: "2" },
+      { matricule: "A0032", nom: "Banza Roger", datenais: "2010-08-27", classe: "3ème", option: "Coupe et couture", frais: 800000, paye: 781195, reste: 18805, points: 93, cours: "Fr, Math et Geo", sessions: "2" },
+      { matricule: "A0033", nom: "Mafuta Junior", datenais: "2005-11-18", classe: "2ème", option: "Mécanique", frais: 800000, paye: 247537, reste: 552463, points: 92, cours: "", sessions: "" },
+      { matricule: "A0034", nom: "Kisimba Eric", datenais: "2012-10-05", classe: "1ère", option: "Mécanique", frais: 800000, paye: 457035, reste: 342965, points: 46, cours: "DI", sessions: "1" },
+      { matricule: "A0035", nom: "Ngoma Fabrice", datenais: "2011-09-15", classe: "4ème", option: "Construction", frais: 800000, paye: 372027, reste: 427973, points: 85, cours: "Fr, Anglais, Infos", sessions: "3" },
+      { matricule: "A0036", nom: "Lukoki Alain", datenais: "2011-11-14", classe: "3ème", option: "Mécanique", frais: 800000, paye: 800000, reste: 0, points: 75, cours: "RDM, Fr, Math et Infos", sessions: "4" },
+      { matricule: "A0037", nom: "Tumba Joël", datenais: "2007-06-13", classe: "4ème", option: "Construction", frais: 800000, paye: 548794, reste: 251206, points: 89, cours: "", sessions: "" },
+      { matricule: "A0038", nom: "Mpiana Patrick", datenais: "2013-04-08", classe: "2ème", option: "Électricité", frais: 800000, paye: 366268, reste: 433732, points: 82, cours: "Techno Meca et Geo", sessions: "2" },
+      { matricule: "A0039", nom: "Kalonji Henri", datenais: "2008-05-23", classe: "1ère", option: "Électricité", frais: 800000, paye: 792619, reste: 7381, points: 64, cours: "", sessions: "" },
+      { matricule: "A0040", nom: "Kabedi Grâce", datenais: "2008-04-13", classe: "7e", option: "", frais: 800000, paye: 209332, reste: 590668, points: 59, cours: "", sessions: "" },
+      { matricule: "A0041", nom: "Mwamba Grâce", datenais: "2005-05-16", classe: "8e", option: "", frais: 800000, paye: 604546, reste: 195454, points: 73, cours: "", sessions: "" },
+      { matricule: "A0042", nom: "Kasongo Esther", datenais: "2011-02-17", classe: "8e", option: "", frais: 800000, paye: 307134, reste: 492866, points: 50, cours: "", sessions: "" },
+      { matricule: "A0043", nom: "Kabasele Anita", datenais: "2009-09-23", classe: "8e", option: "", frais: 800000, paye: 538413, reste: 261587, points: 51, cours: "", sessions: "" },
+      { matricule: "A0044", nom: "Mwadi Sarah", datenais: "2012-10-28", classe: "2ème", option: "Électricité", frais: 800000, paye: 176533, reste: 623467, points: 43, cours: "", sessions: "" },
+      { matricule: "A0045", nom: "Muteba Aline", datenais: "2012-12-16", classe: "3ème", option: "Mécanique", frais: 800000, paye: 702324, reste: 97676, points: 78, cours: "", sessions: "" },
+      { matricule: "A0046", nom: "Ngoy Rebecca", datenais: "2006-09-19", classe: "7e", option: "", frais: 800000, paye: 565621, reste: 234379, points: 92, cours: "", sessions: "" },
+      { matricule: "A0047", nom: "Mbuyi Rachel", datenais: "2003-11-24", classe: "7e", option: "", frais: 800000, paye: 671353, reste: 128647, points: 46, cours: "", sessions: "" },
+      { matricule: "A0048", nom: "Kanku Dorcas", datenais: "2005-06-25", classe: "1ère", option: "Électricité", frais: 800000, paye: 732584, reste: 67416, points: 80, cours: "Élec et Info", sessions: "2" },
+      { matricule: "A0049", nom: "Ilunga Deborah", datenais: "2004-04-23", classe: "7e", option: "", frais: 800000, paye: 708015, reste: 91985, points: 86, cours: "", sessions: "" },
+      { matricule: "A0050", nom: "Tshibola Cedric", datenais: "2005-05-18", classe: "8e", option: "", frais: 800000, paye: 581333, reste: 218667, points: 88, cours: "", sessions: "" },
+      { matricule: "A0051", nom: "Mwamba Freddy", datenais: "2008-02-03", classe: "7e", option: "", frais: 800000, paye: 733855, reste: 66145, points: 70, cours: "", sessions: "" },
+      { matricule: "A0052", nom: "Kanku Samuel", datenais: "2007-04-18", classe: "1ère", option: "Coupe et couture", frais: 800000, paye: 410384, reste: 389616, points: 70, cours: "Géo", sessions: "1" },
+      { matricule: "A0053", nom: "Kitenge Yannick", datenais: "2005-09-22", classe: "1ère", option: "Construction", frais: 800000, paye: 554996, reste: 245004, points: 92, cours: "Math et ECM", sessions: "2" },
+      { matricule: "A0054", nom: "Muleka Jordan", datenais: "2014-05-26", classe: "4ème", option: "Électricité", frais: 800000, paye: 768386, reste: 31614, points: 44, cours: "Math", sessions: "1" },
+      { matricule: "A0055", nom: "Kasereka Michel", datenais: "2009-12-15", classe: "8e", option: "", frais: 800000, paye: 396464, reste: 403536, points: 57, cours: "", sessions: "" },
+      { matricule: "A0056", nom: "Kabongo Fabrice", datenais: "2003-02-20", classe: "3ème", option: "Mécanique", frais: 800000, paye: 308102, reste: 491898, points: 84, cours: "", sessions: "" },
+      { matricule: "A0057", nom: "Mubiala Justin", datenais: "2013-05-15", classe: "3ème", option: "Électricité", frais: 800000, paye: 519204, reste: 280796, points: 67, cours: "", sessions: "" },
+      { matricule: "A0058", nom: "Tshimanga David", datenais: "2008-09-05", classe: "7e", option: "", frais: 800000, paye: 509736, reste: 290264, points: 42, cours: "", sessions: "" },
+      { matricule: "A0059", nom: "Mpoyi Alain", datenais: "2005-12-26", classe: "2ème", option: "Mécanique", frais: 800000, paye: 437474, reste: 362526, points: 50, cours: "Histoire", sessions: "1" }
+    ];
+
+    var ELEVES = [];
+
+    var matieresParOption = {
+      "Construction": ["Mathématiques", "Français", "Dessin Industriel", "Technologie de Construction", "Physique", "Anglais", "Éducation Civique"],
+      "Électricité": ["Mathématiques", "Français", "Électricité", "Physique", "Dessin Technique", "Anglais", "Éducation Civique"],
+      "Mécanique": ["Mathématiques", "Français", "Mécanique", "Résistance des Matériaux", "Physique", "Anglais", "Éducation Civique"],
+      "Coupe et couture": ["Mathématiques", "Français", "Couture", "Patronage", "Anglais", "Éducation Civique"],
+      "": ["Mathématiques", "Français", "Anglais", "Sciences", "Histoire", "Géographie"]
+    };
+
+    rawData.forEach(function (raw) {
+      var classeAffichee = raw.classe;
+      if (raw.option && raw.option.trim() !== "") {
+        classeAffichee += " " + raw.option;
+      }
+      var nbSessions = parseInt(raw.sessions) || 1;
+      if (raw.classe === "7e" || raw.classe === "8e") {
+        nbSessions = 1;
+      }
+      var matieres = matieresParOption[raw.option] || matieresParOption[""];
+      var notesParSession = [];
+      var moyenneGlobale = raw.points / 5;
+      for (var s = 1; s <= Math.min(nbSessions, 2); s++) {
+        var notes = [];
+        matieres.forEach(function (matiere) {
+          var note = Math.min(20, Math.max(0, moyenneGlobale + (Math.random() * 6 - 3)));
+          note = Math.round(note * 10) / 10;
+          notes.push({ matiere: matiere, note: note });
+        });
+        notesParSession.push(notes);
+      }
+      if (notesParSession.length === 0) {
+        var notes = [];
+        matieres.forEach(function (matiere) {
+          var note = Math.min(20, Math.max(0, moyenneGlobale + (Math.random() * 6 - 3)));
+          note = Math.round(note * 10) / 10;
+          notes.push({ matiere: matiere, note: note });
+        });
+        notesParSession.push(notes);
+      }
+
+      var absences = [];
+      if (Math.random() > 0.5) {
+        var nbAbs = Math.floor(Math.random() * 3);
+        for (var a = 0; a < nbAbs; a++) {
+          var mois = ["Jan", "Fév", "Mar", "Avr", "Mai", "Juin", "Juil", "Août", "Sep", "Oct", "Nov", "Déc"];
+          var jour = Math.floor(Math.random() * 28) + 1;
+          var m = Math.floor(Math.random() * 12);
+          var mat = matieres[Math.floor(Math.random() * matieres.length)];
+          var statut = Math.random() > 0.5 ? "just" : "injust";
+          absences.push({ date: jour + " " + mois[m] + " 2025", matiere: mat, statut: statut });
+        }
+      }
+
+      var rang = Math.floor(Math.random() * 20) + 1;
+      var totalEleves = 30 + Math.floor(Math.random() * 20);
+      var fraisPaye = (raw.reste <= 0);
+
+      var eleve = {
+        matricule: raw.matricule,
+        datenais: raw.datenais,
+        classe: classeAffichee,
+        classeCode: raw.classe,
+        option: raw.option,
+        nom: raw.nom,
+        frais_paye: fraisPaye,
+        montant_paye: raw.paye,
+        reste: raw.reste,
+        sessions_count: nbSessions,
+        cours_session: raw.cours || "Aucun cours spécifié",
+        notes: notesParSession,
+        absences: absences,
+        rang: rang + "ème",
+        total_eleves: totalEleves,
+        moyenne: moyenneGlobale
+      };
+      ELEVES.push(eleve);
+    });
+
+    function peuplerClasses() {
+      var select = document.getElementById('classe');
+      var classes = {};
+      ELEVES.forEach(function (e) { classes[e.classe] = true; });
+      var keys = Object.keys(classes).sort();
+      while (select.options.length > 1) select.remove(1);
+      keys.forEach(function (c) {
+        var opt = document.createElement('option');
+        opt.value = c;
+        opt.textContent = c;
+        select.appendChild(opt);
+      });
+    }
+
+    /* ══ CONNEXION ══ */
+    function viderInputs() {
+      document.getElementById('matricule').value = '';
+      document.getElementById('datenais').value = '';
+      document.getElementById('classe').value = '';
+    }
+
+    function seConnecter() {
+      if (bloque) return;
+
+      var mat = document.getElementById('matricule').value.trim().toUpperCase();
+      var date = document.getElementById('datenais').value;
+      var classe = document.getElementById('classe').value;
+
+      // Champs vides
+      if (!mat || !date || !classe) {
+        afficherErreur("Veuillez remplir tous les champs avant de continuer.");
+        agiter();
+        return;
+      }
+
+      // ── ÉTAPE 1 : Le matricule est-il dans la liste A0001→A3000 ? ──
+      // On cherche uniquement par matricule, peu importe date/classe
+      var eleveParMat = null;
+      for (var i = 0; i < ELEVES.length; i++) {
+        if (ELEVES[i].matricule === mat) {
+          eleveParMat = ELEVES[i];
+          break;
+        }
+      }
+
+      if (!eleveParMat) {
+        // Matricule introuvable → message "vérifier le matricule"
+        incrementerTentatives("Numéro matricule incorrect. Veuillez vérifier votre numéro matricule et réessayer.");
+        return;
+      }
+
+      // ── ÉTAPE 2 : Matricule trouvé → vérifier date ET classe ──
+      var bonneDate = (eleveParMat.datenais === date);
+      var bonneClasse = (eleveParMat.classe === classe);
+
+      if (!bonneDate || !bonneClasse) {
+        // Matricule bon mais date ou classe incorrecte
+        incrementerTentatives("Veuillez vérifier votre date de naissance ou la classe, puis réessayer.");
+        return;
+      }
+
+      // ── ✅ TOUT CORRECT ──
+      tentatives = 0;
+      lsDel(CLE_TENTATIVES);
+      lsDel(CLE_BLOCAGE_FIN);
+      cacherErreur();
+      ouvrirDashboard(eleveParMat);
+    }
+
+    function incrementerTentatives(msg) {
+      tentatives++;
+      lsSet(CLE_TENTATIVES, tentatives);
+      agiter();
+      setTimeout(viderInputs, 420);
+      var restantes = maxTentatives - tentatives;
+      if (tentatives >= maxTentatives) {
+        bloquerAcces();
+      } else {
+        afficherErreur(msg);
+        document.getElementById('attemptsInfo').style.display = 'block';
+        document.getElementById('attemptsLeft').textContent = restantes;
+      }
+    }
+
+    function afficherErreur(msg) {
+      var box = document.getElementById('errorBox');
+      box.classList.add('show');
+      document.getElementById('errorMsg').innerHTML = msg;
+    }
+    function cacherErreur() {
+      document.getElementById('errorBox').classList.remove('show');
+      document.getElementById('attemptsInfo').style.display = 'none';
+    }
+
+    function agiter() {
+      var card = document.querySelector('.login-card');
+      card.classList.remove('shake');
+      void card.offsetWidth;
+      card.classList.add('shake');
+    }
+
+    function bloquerAcces() {
+      var fin = Date.now() + 30000;
+      lsSet(CLE_BLOCAGE_FIN, fin);
+      viderInputs();
+      reprendreBlocage(fin);
+    }
+
+    /* ══ DASHBOARD ══ */
+    var currentEleve = null;
+    var currentSession = 1;
+
+    function ouvrirDashboard(eleve) {
+      currentEleve = eleve;
+      document.getElementById('page-login').style.display = 'none';
+      document.getElementById('page-dashboard').style.display = 'block';
+      window.scrollTo(0, 0);
+
+      // Gérer les onglets
+      var tabs = document.getElementById('sessionTabs');
+      var btns = tabs.querySelectorAll('button');
+      if (eleve.notes.length < 2 || eleve.classeCode === "7e" || eleve.classeCode === "8e") {
+        btns[1].style.display = 'none';
+        btns[0].classList.add('active');
+        btns[1].classList.remove('active');
+        currentSession = 1;
+      } else {
+        btns[1].style.display = 'inline-block';
+      }
+
+      // Remplir les infos communes
+      remplirProfil(eleve);
+      remplirInfosFinancieres(eleve);
+      remplirAbsences(eleve);
+
+      // Gérer l'affichage des notes selon les frais
+      var notesContent = document.getElementById('notesContent');
+      var blockedMsg = document.getElementById('blockedNotesMsg');
+      var btnsTabs = document.querySelectorAll('.session-tabs button');
+
+      if (!eleve.frais_paye) {
+        notesContent.style.display = 'none';
+        blockedMsg.style.display = 'block';
+        btnsTabs.forEach(function (b) { b.disabled = true; });
+      } else {
+        notesContent.style.display = 'block';
+        blockedMsg.style.display = 'none';
+        btnsTabs.forEach(function (b) { b.disabled = false; });
+        changerSession(currentSession);
+      }
+    }
+
+    function remplirProfil(e) {
+      document.getElementById('nomEleve').textContent = e.nom;
+      document.getElementById('matriculeEleve').textContent = "Matricule : " + e.matricule;
+      document.getElementById('classeEleve').textContent = "Classe : " + e.classe;
+      document.getElementById('sectionBadge').textContent = e.classe;
+    }
+
+    function remplirInfosFinancieres(e) {
+      document.getElementById('montantPaye').textContent = e.montant_paye.toLocaleString() + ' FC';
+      document.getElementById('resteAPayer').textContent = e.reste.toLocaleString() + ' FC';
+      document.getElementById('nbSessions').textContent = e.sessions_count;
+      document.getElementById('coursSession').textContent = e.cours_session || 'Aucun cours spécifié';
+    }
+
+    function remplirAbsences(e) {
+      var absDiv = document.getElementById('absencesList');
+      absDiv.innerHTML = '';
+      if (e.absences.length === 0) {
+        absDiv.innerHTML = '<p style="color:#aaa;font-size:14px;padding:10px 0;">Aucune absence enregistrée. 🎉</p>';
+      } else {
+        e.absences.forEach(function (a) {
+          var div = document.createElement('div');
+          div.className = 'abs-item';
+          div.innerHTML =
+            '<span>' + a.date + ' — <strong>' + a.matiere + '</strong></span>' +
+            '<span class="abs-status ' + a.statut + '">' + (a.statut === 'just' ? '✔ Justifiée' : '✖ Non justifiée') + '</span>';
+          absDiv.appendChild(div);
+        });
+      }
+    }
+
+    function getMention(moy) {
+      if (moy >= 18) return { txt: "Excellent", cls: "excel" };
+      if (moy >= 15) return { txt: "Bien", cls: "bien" };
+      if (moy >= 12) return { txt: "Assez Bien", cls: "bien" };
+      if (moy >= 10) return { txt: "Passable", cls: "moyen" };
+      return { txt: "Insuffisant", cls: "faible" };
+    }
+
+    function getBadgeNote(note) {
+      if (note >= 17) return "excel";
+      if (note >= 14) return "bien";
+      if (note >= 10) return "moyen";
+      return "faible";
+    }
+
+    function changerSession(num) {
+      currentSession = num;
+      var btns = document.querySelectorAll('.session-tabs button');
+      btns.forEach(function (b) {
+        b.classList.toggle('active', parseInt(b.dataset.session) === num);
+      });
+      if (currentEleve && currentEleve.frais_paye) {
+        remplirNotes(currentEleve, num);
+      }
+    }
+
+    function remplirNotes(e, sessionIndex) {
+      var notes = e.notes[sessionIndex - 1] || e.notes[0];
+      var total = 0;
+      notes.forEach(function (n) { total += n.note; });
+      var moy = (total / notes.length).toFixed(2);
+      var mention = getMention(parseFloat(moy));
+
+      // Stats
+      document.getElementById('statMoy').textContent = moy;
+      document.getElementById('statRang').textContent = e.rang;
+      document.getElementById('statMatieres').textContent = notes.length;
+      document.getElementById('statStatut').textContent = parseFloat(moy) >= 10 ? "✅ Admis" : "❌ Échec";
+
+      // Tableau
+      var tbody = document.getElementById('notesBody');
+      tbody.innerHTML = '';
+      notes.forEach(function (n) {
+        var cls = getBadgeNote(n.note);
+        var pct = (n.note / 20 * 100).toFixed(0);
+        var tr = document.createElement('tr');
+        tr.innerHTML =
+          '<td><strong>' + n.matiere + '</strong></td>' +
+          '<td><span class="note-badge ' + cls + '">' + n.note + '/20</span></td>' +
+          '<td>' + getMention(n.note).txt + '</td>' +
+          '<td style="min-width:120px;">' +
+          '<div class="progress-bar"><div class="progress-fill fill-' + cls + '" style="width:' + pct + '%"></div></div>' +
+          '</td>';
+        tbody.appendChild(tr);
+      });
+
+      // Footer
+      document.getElementById('moyFinale').textContent = moy + '/20';
+      document.getElementById('rangFinal').textContent = e.rang;
+      document.getElementById('totalEleves').textContent = e.total_eleves;
+      var mentionFinale = document.getElementById('mentionFinale');
+      mentionFinale.textContent = mention.txt;
+      mentionFinale.className = 'mention-finale' + (parseFloat(moy) < 10 ? ' echec' : '');
+    }
+
+    function seDeconnecter() {
+      document.getElementById('page-dashboard').style.display = 'none';
+      document.getElementById('page-login').style.display = 'block';
+      document.getElementById('matricule').value = '';
+      document.getElementById('datenais').value = '';
+      document.getElementById('classe').value = '';
+      cacherErreur();
+      window.scrollTo(0, 0);
+    }
+
+    document.addEventListener('keydown', function (e) { if (e.key === 'Enter') seConnecter(); });
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,888 @@
+<!doctype html>
+<html lang="fr">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Institut Kyeshero de Goma</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+  <!-- TOPBAR -->
+  <div class="topbar">
+    <div class="topbar-left">
+      <span>
+        <img src="./icons/phone.png"> +243 97 123 4567
+      </span>
+      <span>
+        <img src="./icons/mail.png"> contact@ikyeshero-goma.cd
+      </span>
+      <span>
+        <img src="./icons/localisation.png"> Goma, Nord-Kivu, RDC
+      </span>
+    </div>
+    <div class="topbar-right">
+      <a href="#"><img src="./icons/book.png" alt=""></a>
+      <a href="#"><img src="./icons/x.png" alt=""></a>
+      <a href="#"><img src="./icons/insta.png" alt=""></a>
+    </div>
+  </div>
+
+  <!-- NAVBAR -->
+  <nav>
+    <div class="logo">
+      <div class="logo-shield">
+        <img src="/file_00000000504871f4aab8f51b649ac600.png" alt="logo de l'institut" />
+      </div>
+      <div class="logo-text">
+        <h1>INSTITUT KYESHERO</h1>
+        <p>Discipline · Travail · Réussite</p>
+      </div>
+    </div>
+    <div class="nav-links">
+      <a href="#" class="active" onclick="showPage('home', this)">ACCUEIL</a>
+      <a href="#" onclick="showPage('apropos', this)">À PROPOS</a>
+      <a href="#" onclick="showPage('enseignement', this)">ENSEIGNEMENT</a>
+      <a href="#" onclick="showPage('personnel', this)">PERSONNEL</a>
+      <a href="#" onclick="showPage('eleves', this)">ÉLÈVES</a>
+      <a href="#" onclick="showPage('actualites', this)">ACTUALITÉS</a>
+      <a href="#" onclick="showPage('galerie', this)">GALERIE</a>
+      <a href="#" onclick="showPage('inscriptions', this)">INSCRIPTIONS</a>
+      <a href="#" onclick="showPage('contact', this)">CONTACT</a>
+      <a href="espace-numerique.html" class="btn-espace">ESPACE NUMÉRIQUE</a>
+    </div>
+    <div class="hamburger" onclick="toggleMenu()">
+      <span></span><span></span><span></span>
+    </div>
+  </nav>
+
+  <!-- MOBILE MENU -->
+  <div class="mobile-menu" id="mobileMenu">
+    <div class="mobile-menu-header">
+      <div class="logo">
+        <div class="logo-shield">
+          <img src="./IMG-20260512-WA0002.jpg" alt="logo">
+        </div>
+        <div class="logo-text">
+          <h1>INSTITUT KYESHERO</h1>
+            <p>Discipline · Travail · Réussite</p>
+        </div>
+      </div>
+      <button class="mobile-close" onclick="toggleMenu()">✕</button>
+    </div>
+    <a href="#" onclick="
+          showPage('home', null);
+          toggleMenu();
+        ">ACCUEIL</a>
+    <a href="#" onclick="
+          showPage('apropos', null);
+          toggleMenu();
+        ">À PROPOS</a>
+    <a href="#" onclick="
+          showPage('enseignement', null);
+          toggleMenu();
+        ">ENSEIGNEMENT</a>
+    <a href="#" onclick="
+          showPage('personnel', null);
+          toggleMenu();
+        ">PERSONNEL</a>
+    <a href="#" onclick="
+          showPage('eleves', null);
+          toggleMenu();
+        ">ÉLÈVES</a>
+    <a href="#" onclick="
+          showPage('actualites', null);
+          toggleMenu();
+        ">ACTUALITÉS</a>
+    <a href="#" onclick="
+          showPage('galerie', null);
+          toggleMenu();
+        ">GALERIE</a>
+    <a href="#" onclick="
+          showPage('inscriptions', null);
+          toggleMenu();
+        ">INSCRIPTIONS</a>
+    <a href="#" onclick="
+          showPage('contact', null);
+          toggleMenu();
+        ">CONTACT</a>
+    <div class="mobile-espace">
+      <a href="espace-numerique.html"><img src="./icons/cad.png" alt=""> ESPACE NUMÉRIQUE</a>
+    </div>
+  </div>
+
+  <!-- ════════════════ PAGE ACCUEIL ════════════════ -->
+  <div id="page-home">
+    <!-- HERO SLIDER -->
+    <div class="hero">
+      <div class="slide slide-1 active"></div>
+      <div class="slide slide-2"></div>
+      <div class="slide slide-3"></div>
+      <div class="hero-content">
+        <p>Bienvenue à</p>
+        <h2>l'Institut Kyeshero</h2>
+        <p class="sub">
+          Une institution d'excellence qui forme des jeunes compétents,
+          disciplinés et responsables pour bâtir un avenir meilleur.
+        </p>
+        <div class="hero-btns">
+          <a href="#" class="btn-primary" onclick="showPage('apropos', null)">DÉCOUVRIR L'ÉCOLE</a>
+          <a href="#" class="btn-outline" onclick="showPage('sections', null)">NOS SECTIONS</a>
+        </div>
+      </div>
+      <button class="slide-arrow slide-prev" onclick="prevSlide()"> < </button>
+          <button class="slide-arrow slide-next" onclick="nextSlide()">></button>
+          <div class="slide-dots">
+            <div class="dot active" onclick="goSlide(0)"></div>
+            <div class="dot" onclick="goSlide(1)"></div>
+            <div class="dot" onclick="goSlide(2)"></div>
+          </div>
+    </div>
+
+    <!-- FEATURES -->
+    <div class="features">
+      <div class="feature-card">
+        <div class="feature-icon">
+          <img src="./icons/ecole.png" alt="ecole">
+        </div>
+        <div>
+          <h3>Excellence Académique</h3>
+          <p>Un enseignement de qualité pour des résultats probants.</p>
+        </div>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">
+          <img src="./icons/person.png" alt="personnes">
+        </div>
+        <div>
+          <h3>Encadrement de Qualité</h3>
+          <p>
+            Des enseignants qualifiés et dévoués à la réussite des élèves.
+          </p>
+        </div>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">
+          <img src="./icons/livre.png" alt="livres">
+        </div>
+        <div>
+          <h3>Formations Diversifiées</h3>
+          <p>Plusieurs sections techniques et pédagogiques adaptées.</p>
+        </div>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">
+          <img src="./icons/succes.png" alt="succes">
+        </div>
+        <div>
+          <h3>Valeurs &amp; Discipline</h3>
+          <p>Nous formons le caractère autant que l'intelligence.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- CONTENU PRINCIPAL 4 colonnes -->
+    <div class="container">
+      <div class="section home-grid">
+        <!-- Mot du Préfet -->
+        <div class="card-box">
+          <h3>MOT DU PRÉFET</h3>
+          <div class="prefet-img" style="
+                background: linear-gradient(135deg, #1a3a6b, #2d5fa6);
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                color: rgba(255, 255, 255, 0.3);
+                font-size: 40px;
+              ">
+            👔
+          </div>
+          <p class="prefet-text">
+            Chers élèves, parents et visiteurs, Bienvenue sur le site officiel
+            de l'Institut Kyeshero de Goma.<br /><br />Notre mission est de
+            former des jeunes compétents, honnêtes et responsables pour le
+            développement de notre pays.
+          </p>
+          <p class="prefet-name">— Préfet de l'Institut</p>
+        </div>
+
+        <!-- Actualités -->
+        <div class="card-box">
+          <h3>ACTUALITÉS RÉCENTES</h3>
+          <div class="actu-item">
+            <div class="actu-img" style="
+                  background: #1a3a6b;
+                  display: flex;
+                  align-items: center;
+                  justify-content: center;
+                  color: #fff;
+                  font-size: 18px;
+                ">
+              📸
+            </div>
+            <div class="actu-info">
+              <h4>Rentrée scolaire 2026-2027</h4>
+              <span>1er septembre 2026</span>
+            </div>
+          </div>
+          <div class="actu-item">
+            <div class="actu-img" style="
+                  background: #1a3a6b;
+                  display: flex;
+                  align-items: center;
+                  justify-content: center;
+                  color: #fff;
+                  font-size: 18px;
+                ">
+              🏅
+            </div>
+            <div class="actu-info">
+              <h4>Résultats EXETAT 2026 : Félicitations à nos lauréats !</h4>
+              <span>22 juin 2026</span>
+            </div>
+          </div>
+          <div class="actu-item">
+            <div class="actu-img" style="
+                  background: #1a3a6b;
+                  display: flex;
+                  align-items: center;
+                  justify-content: center;
+                  color: #fff;
+                  font-size: 18px;
+                ">
+              ⚽
+            </div>
+            <div class="actu-info">
+              <h4>Journée sportive et culturelle de l'Institut</h4>
+              <span>10 Avril 2025</span>
+            </div>
+          </div>
+          <a href="#" class="btn-blue" onclick="showPage('actualites', null)">VOIR TOUTES LES ACTUALITÉS</a>
+        </div>
+
+        <!-- Nos Sections -->
+        <div class="card-box">
+          <h3>NOS SECTIONS</h3>
+          <div class="section-item"><span>🎓</span> Pédagogie Générale</div>
+          <div class="section-item"><span>🏗️</span> Construction</div>
+          <div class="section-item"><span>⚡</span> Électricité</div>
+          <div class="section-item"><span>⚙️</span> Mécanique</div>
+          <div class="section-item"><span>🔬</span> Biochimie</div>
+          <div class="section-item">
+            <span>💻</span> Informatique de Gestion
+          </div>
+          <a href="#" class="btn-blue" onclick="showPage('sections', null)">VOIR TOUTES LES SECTIONS</a>
+        </div>
+
+        <!-- Galerie -->
+        <div class="card-box">
+          <h3>GALERIE</h3>
+          <div class="galerie-grid">
+            <div class="gal-img" style="
+                  background: linear-gradient(135deg, #1a3a6b, #2d5fa6);
+                  display: flex;
+                  align-items: center;
+                  justify-content: center;
+                  color: rgba(255, 255, 255, 0.4);
+                  font-size: 22px;
+                ">
+              🏫
+            </div>
+            <div class="gal-img" style="
+                  background: linear-gradient(135deg, #0d2a50, #1a3a6b);
+                  display: flex;
+                  align-items: center;
+                  justify-content: center;
+                  color: rgba(255, 255, 255, 0.4);
+                  font-size: 22px;
+                ">
+              👨‍🎓
+            </div>
+            <div class="gal-img" style="
+                  background: linear-gradient(135deg, #163060, #1e4fa0);
+                  display: flex;
+                  align-items: center;
+                  justify-content: center;
+                  color: rgba(255, 255, 255, 0.4);
+                  font-size: 22px;
+                ">
+              📐
+            </div>
+            <div class="gal-img" style="
+                  background: linear-gradient(135deg, #0a2040, #163060);
+                  display: flex;
+                  align-items: center;
+                  justify-content: center;
+                  color: rgba(255, 255, 255, 0.4);
+                  font-size: 22px;
+                ">
+              🎒
+            </div>
+          </div>
+          <a href="#" class="btn-blue" style="margin-top: 10px" onclick="showPage('galerie', null)">VOIR PLUS DE
+            PHOTOS</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- BARRE STATISTIQUES -->
+    <div class="stats-bar">
+      <div class="stat-item">
+        <div class="num">+1.200</div>
+        <div class="lbl">Élèves</div>
+      </div>
+      <div class="stat-divider"></div>
+      <div class="stat-item">
+        <div class="num">+60</div>
+        <div class="lbl">Enseignants</div>
+      </div>
+      <div class="stat-divider"></div>
+      <div class="stat-item">
+        <div class="num">6</div>
+        <div class="lbl">Sections</div>
+      </div>
+      <div class="stat-divider"></div>
+      <div class="stat-item">
+        <div class="num">+30 ans</div>
+        <div class="lbl">d'Excellence</div>
+      </div>
+      <div class="stat-divider"></div>
+      <div class="quote-stat">
+        <blockquote>
+          "L'éducation est l'arme la plus puissante qu'on puisse utiliser pour
+          changer le monde."
+        </blockquote>
+        <cite>— Nelson Mandela</cite>
+      </div>
+    </div>
+  </div>
+  <!-- /page-home -->
+
+  <!-- ════════════════ PAGE NOS SECTIONS ════════════════ -->
+  <div id="page-sections" style="display: none">
+    <div class="breadcrumb">
+      <div class="container">
+        <h2>NOS SECTIONS</h2>
+        <p>
+          <a href="#" onclick="showPage('home', null)">Accueil</a> > Nos
+          Sections
+        </p>
+      </div>
+    </div>
+    <div class="sections-list">
+      <div class="section-card">
+        <div class="ico">🎓</div>
+        <div>
+          <h3>Coupe & Couture</h3>
+          <p>
+            Formation des futurs éducateurs compétents et responsables. Ce
+            programme prépare les élèves à enseigner avec rigueur et passion.
+          </p>
+        </div>
+        <div class="arrow">></div>
+      </div>
+      <div class="section-card">
+        <div class="ico">🏗️</div>
+        <div>
+          <h3>Construction</h3>
+          <p>
+            Apprentissage des techniques de bâtiment et travaux publics. Les
+            élèves maîtrisent les fondamentaux du génie civil et de la
+            construction.
+          </p>
+        </div>
+        <div class="arrow">></div>
+      </div>
+      <div class="section-card">
+        <div class="ico">⚡</div>
+        <div>
+          <h3>Électricité</h3>
+          <p>
+            Formation pratique et théorique en installations électriques. Du
+            câblage résidentiel aux systèmes industriels complexes.
+          </p>
+        </div>
+        <div class="arrow">></div>
+      </div>
+      <div class="section-card">
+        <div class="ico">⚙️</div>
+        <div>
+          <h3>Mécanique</h3>
+          <p>
+            Maîtrise des techniques de mécanique générale et automobile. Une
+            formation complète pour entrer directement dans la vie
+            professionnelle.
+          </p>
+        </div>
+        <div class="arrow">></div>
+      </div>
+      <div class="section-card">
+        <div class="ico">🔬</div>
+        <div>
+          <h3>Education de base</h3>
+          <p>
+            Études des réactions chimiques et applications industrielles. Un
+            programme scientifique rigoureux ouvert sur les métiers de la
+            santé et de l'industrie.
+          </p>
+        </div>
+        <div class="arrow">></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ════════════════ PAGES GÉNÉRIQUES ════════════════ -->
+  <div id="page-apropos" style="display: none">
+    <div class="breadcrumb">
+      <div class="container">
+        <h2>À PROPOS</h2>
+        <p>
+          <a href="#" onclick="showPage('home', null)">Accueil</a> > À Propos
+        </p>
+      </div>
+    </div>
+    <div class="container section">
+      <div class="section-title">Notre Histoire</div>
+      <div class="section-heading">L'Institut Kyeshero de Goma</div>
+      <div class="section-divider"></div>
+      <p style="
+            font-size: 15px;
+            line-height: 1.8;
+            color: #555;
+            max-width: 700px;
+          ">
+        Fondé il y a plus de 30 ans, l'Institut Kyeshero de Goma s'est imposé
+        comme une référence en matière d'enseignement technique et pédagogique
+        en République Démocratique du Congo. Notre institution forme chaque
+        année plus de 1 200 jeunes compétents, disciplinés et responsables,
+        prêts à contribuer au développement de leur pays. Avec 6 sections
+        diversifiées et plus de 60 enseignants qualifiés, nous offrons un
+        cadre d'apprentissage d'excellence.
+      </p>
+    </div>
+  </div>
+
+  <div id="page-enseignement" style="display: none">
+    <div class="breadcrumb">
+      <div class="container">
+        <h2>ENSEIGNEMENT</h2>
+        <p>
+          <a href="#" onclick="showPage('home', null)">Accueil</a> >
+          Enseignement
+        </p>
+      </div>
+    </div>
+    <div class="container section">
+      <div class="section-title">Programme</div>
+      <div class="section-heading">Notre Approche Pédagogique</div>
+      <div class="section-divider"></div>
+      <p style="
+            font-size: 15px;
+            line-height: 1.8;
+            color: #555;
+            max-width: 700px;
+          ">
+        Notre approche pédagogique combine théorie et pratique. Chaque section
+        dispose d'ateliers équipés et de laboratoires modernes pour garantir
+        une formation concrète et efficace. Les élèves bénéficient d'un suivi
+        personnalisé par des enseignants expérimentés et passionnés.
+      </p>
+    </div>
+  </div>
+
+  <div id="page-personnel" style="display: none">
+    <div class="breadcrumb">
+      <div class="container">
+        <h2>PERSONNEL</h2>
+        <p>
+          <a href="#" onclick="showPage('home', null)">Accueil</a> > Personnel
+        </p>
+      </div>
+    </div>
+    <div class="container section">
+      <div class="section-title">Notre Équipe</div>
+      <div class="section-heading">Corps Enseignant &amp; Administratif</div>
+      <div class="section-divider"></div>
+      <p style="
+            font-size: 15px;
+            line-height: 1.8;
+            color: #555;
+            max-width: 700px;
+          ">
+        L'Institut compte plus de 60 enseignants qualifiés et dévoués, ainsi
+        qu'un personnel administratif et technique compétent. Ensemble, ils
+        œuvrent chaque jour pour offrir aux élèves les meilleures conditions
+        d'apprentissage et d'épanouissement.
+      </p>
+    </div>
+  </div>
+
+  <div id="page-eleves" style="display: none">
+    <div class="breadcrumb">
+      <div class="container">
+        <h2>ÉLÈVES</h2>
+        <p>
+          <a href="#" onclick="showPage('home', null)">Accueil</a> > Élèves
+        </p>
+      </div>
+    </div>
+    <div class="container section">
+      <div class="section-title">Vie Scolaire</div>
+      <div class="section-heading">Espace Élèves</div>
+      <div class="section-divider"></div>
+      <p style="
+            font-size: 15px;
+            line-height: 1.8;
+            color: #555;
+            max-width: 700px;
+          ">
+        Notre communauté d'élèves est au cœur de tout ce que nous faisons.
+        Avec plus de 1 200 élèves inscrits dans nos 6 sections, l'Institut
+        Kyeshero est un lieu de vie animé, stimulant et bienveillant. Des
+        activités sportives, culturelles et académiques complètent la
+        formation en classe.
+      </p>
+    </div>
+  </div>
+
+  <div id="page-actualites" style="display: none">
+    <div class="breadcrumb">
+      <div class="container">
+        <h2>ACTUALITÉS</h2>
+        <p>
+          <a href="#" onclick="showPage('home', null)">Accueil</a> >
+          Actualités
+        </p>
+      </div>
+    </div>
+    <div class="container section">
+      <div class="section-title">Dernières Nouvelles</div>
+      <div class="section-heading">Actualités Récentes</div>
+      <div class="section-divider"></div>
+      <div style="
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            max-width: 700px;
+          ">
+        <div style="border: 1px solid #eee; border-radius: 8px; padding: 20px">
+          <div style="font-size: 12px; color: #999; margin-bottom: 6px">
+            05 Mai 2025
+          </div>
+          <h3 style="color: var(--bleu); font-size: 17px; margin-bottom: 8px">
+            Rentrée scolaire 2025-2026
+          </h3>
+          <p style="font-size: 14px; color: #666; line-height: 1.7">
+            La rentrée scolaire 2025-2026 a été marquée par un accueil
+            chaleureux des nouveaux élèves. Le corps enseignant est prêt pour
+            une nouvelle année d'excellence.
+          </p>
+        </div>
+        <div style="border: 1px solid #eee; border-radius: 8px; padding: 20px">
+          <div style="font-size: 12px; color: #999; margin-bottom: 6px">
+            20 Avril 2025
+          </div>
+          <h3 style="color: var(--bleu); font-size: 17px; margin-bottom: 8px">
+            Résultats EXETAT 2024 : Félicitations à nos lauréats !
+          </h3>
+          <p style="font-size: 14px; color: #666; line-height: 1.7">
+            L'Institut Kyeshero est fier d'annoncer un taux de réussite
+            exceptionnel à l'EXETAT 2024. Félicitations à tous nos lauréats
+            pour cet accomplissement remarquable.
+          </p>
+        </div>
+        <div style="border: 1px solid #eee; border-radius: 8px; padding: 20px">
+          <div style="font-size: 12px; color: #999; margin-bottom: 6px">
+            10 Avril 2025
+          </div>
+          <h3 style="color: var(--bleu); font-size: 17px; margin-bottom: 8px">
+            Journée sportive et culturelle de l'Institut
+          </h3>
+          <p style="font-size: 14px; color: #666; line-height: 1.7">
+            Une journée mémorable riche en activités sportives et culturelles
+            a réuni élèves, enseignants et parents dans une ambiance festive
+            et fraternelle.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="page-galerie" style="display: none">
+    <div class="breadcrumb">
+      <div class="container">
+        <h2>GALERIE</h2>
+        <p>
+          <a href="#" onclick="showPage('home', null)">Accueil</a> > Galerie
+        </p>
+      </div>
+    </div>
+    <div class="container section">
+      <div class="section-title">Moments de Vie</div>
+      <div class="section-heading">Notre Galerie Photos</div>
+      <div class="section-divider"></div>
+      <div style="
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 14px;
+          ">
+        <div style="
+              height: 180px;
+              background: linear-gradient(135deg, #1a3a6b, #2d5fa6);
+              border-radius: 8px;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              color: rgba(255, 255, 255, 0.4);
+              font-size: 40px;
+            ">
+          🏫
+        </div>
+        <div style="
+              height: 180px;
+              background: linear-gradient(135deg, #0d2a50, #1a3a6b);
+              border-radius: 8px;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              color: rgba(255, 255, 255, 0.4);
+              font-size: 40px;
+            ">
+          👨‍🎓
+        </div>
+        <div style="
+              height: 180px;
+              background: linear-gradient(135deg, #163060, #1e4fa0);
+              border-radius: 8px;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              color: rgba(255, 255, 255, 0.4);
+              font-size: 40px;
+            ">
+          📐
+        </div>
+        <div style="
+              height: 180px;
+              background: linear-gradient(135deg, #0a2040, #163060);
+              border-radius: 8px;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              color: rgba(255, 255, 255, 0.4);
+              font-size: 40px;
+            ">
+          🎒
+        </div>
+        <div style="
+              height: 180px;
+              background: linear-gradient(135deg, #1a3a6b, #0d2a50);
+              border-radius: 8px;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              color: rgba(255, 255, 255, 0.4);
+              font-size: 40px;
+            ">
+          ⚙️
+        </div>
+        <div style="
+              height: 180px;
+              background: linear-gradient(135deg, #2d5fa6, #1a3a6b);
+              border-radius: 8px;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              color: rgba(255, 255, 255, 0.4);
+              font-size: 40px;
+            ">
+          🏆
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="page-inscriptions" style="display: none">
+    <div class="breadcrumb">
+      <div class="container">
+        <h2>INSCRIPTIONS</h2>
+        <p>
+          <a href="#" onclick="showPage('home', null)">Accueil</a> >
+          Inscriptions
+        </p>
+      </div>
+    </div>
+    <div class="container section">
+      <div class="section-title">Rejoignez-nous</div>
+      <div class="section-heading">Procédure d'Inscription</div>
+      <div class="section-divider"></div>
+      <p style="
+            font-size: 15px;
+            line-height: 1.8;
+            color: #555;
+            max-width: 700px;
+            margin-bottom: 24px;
+          ">
+        Pour s'inscrire à l'Institut Kyeshero de Goma, veuillez vous présenter
+        au secrétariat avec les documents suivants :
+      </p>
+      <ul style="
+            font-size: 14px;
+            color: #555;
+            line-height: 2.2;
+            max-width: 600px;
+            padding-left: 20px;
+          ">
+        <li>Bulletin de la dernière année scolaire</li>
+        <li>Acte de naissance (original + copie)</li>
+        <li>Carte d'identité des parents ou tuteur</li>
+        <li>Attestation de bonne conduite</li>
+      </ul>
+      <p style="
+            margin-top: 24px;
+            font-size: 14px;
+            color: #555;
+            max-width: 700px;
+          ">
+        Les inscriptions sont ouvertes de
+        <strong>juillet à septembre</strong> de chaque année scolaire. Pour
+        plus d'informations, contactez-nous au
+        <strong>+243 97 123 4567</strong>.
+      </p>
+    </div>
+  </div>
+
+  <div id="page-contact" style="display: none">
+    <div class="breadcrumb">
+      <div class="container">
+        <h2>CONTACT</h2>
+        <p>
+          <a href="#" onclick="showPage('home', null)">Accueil</a> > Contact
+        </p>
+      </div>
+    </div>
+    <div class="container section">
+      <div class="section-title">Nous Trouver</div>
+      <div class="section-heading">Contactez-Nous</div>
+      <div class="section-divider"></div>
+      <div style="
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 32px;
+            max-width: 700px;
+          ">
+        <div>
+          <h4 style="color: var(--bleu); margin-bottom: 8px">📍 Adresse</h4>
+          <p style="font-size: 14px; color: #555">
+            Quartier Kyeshero, Goma, Nord-Kivu, RDC
+          </p>
+        </div>
+        <div>
+          <h4 style="color: var(--bleu); margin-bottom: 8px">📞 Téléphone</h4>
+          <p style="font-size: 14px; color: #555">+243 97 123 4567</p>
+        </div>
+        <div>
+          <h4 style="color: var(--bleu); margin-bottom: 8px">✉ Email</h4>
+          <p style="font-size: 14px; color: #555">
+            contact@ikyeshero-goma.cd
+          </p>
+        </div>
+        <div>
+          <h4 style="color: var(--bleu); margin-bottom: 8px">🕐 Horaires</h4>
+          <p style="font-size: 14px; color: #555">Lun-Ven : 7h30 - 16h30</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <p>
+      &copy; 2026 - Institut Kyeshero | Tous droits réservés.<br>
+      <a href="#">contact@ikyeshero-goma.cd</a>
+    </p>
+  </footer>
+
+  <!-- WHATSAPP -->
+  <a href="https://wa.me/243971234567" class="whatsapp-btn" target="_blank">
+    <img src="./icons/whastap.png">
+  </a>
+
+  <script>
+    /* ── SLIDER ── */
+    var slides = document.querySelectorAll(".slide");
+    var dots = document.querySelectorAll(".dot");
+    var cur = 0;
+    var timer;
+
+    function goSlide(n) {
+      slides[cur].classList.remove("active");
+      dots[cur].classList.remove("active");
+      cur = (n + slides.length) % slides.length;
+      slides[cur].classList.add("active");
+      dots[cur].classList.add("active");
+    }
+    function nextSlide() {
+      goSlide(cur + 1);
+      resetTimer();
+    }
+    function prevSlide() {
+      goSlide(cur - 1);
+      resetTimer();
+    }
+    function resetTimer() {
+      clearInterval(timer);
+      timer = setInterval(nextSlide, 5000);
+    }
+    timer = setInterval(nextSlide, 5000);
+
+    /* ── NAVIGATION PAGES ── */
+    var pages = [
+      "home",
+      "sections",
+      "apropos",
+      "enseignement",
+      "personnel",
+      "eleves",
+      "actualites",
+      "galerie",
+      "inscriptions",
+      "contact",
+    ];
+
+    function showPage(id, link) {
+      pages.forEach(function (p) {
+        var el = document.getElementById("page-" + p);
+        if (el) el.style.display = "none";
+      });
+      var target = document.getElementById("page-" + id);
+      if (target) target.style.display = "block";
+
+      // update nav active
+      var navLinks = document.querySelectorAll(".nav-links a");
+      navLinks.forEach(function (a) {
+        a.classList.remove("active");
+      });
+      if (link) link.classList.add("active");
+
+      window.scrollTo(0, 0);
+      return false;
+    }
+
+    /* ── HAMBURGER ── */
+    function toggleMenu() {
+      var m = document.getElementById("mobileMenu");
+      m.classList.toggle("open");
+    }
+
+    /* ── PREVENT DEFAULT on all # links ── */
+    document.querySelectorAll('a[href="#"]').forEach(function (a) {
+      a.addEventListener("click", function (e) {
+        e.preventDefault();
+      });
+    });
+  </script>
+</body>
+
+</html>
