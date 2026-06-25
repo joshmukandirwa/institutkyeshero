@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+    <title>Actualités</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Inter:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet" />
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div id="progress"></div>
+    <div id="page-main">
+
+        <!-- TOPBAR -->
+        <div class="topbar">
+            <div class="topbar-left">
+                <span>Av. Kyeshero, Goma, Nord-Kivu, RDC</span>
+                <span>+243 97 123 4567</span>
+                <span>contact@ikyeshero-goma.cd</span>
+            </div>
+            <div class="topbar-right">
+                <a href="#" title="Facebook">f</a>
+                <a href="#" title="Twitter">𝕏</a>
+                <a href="#" title="YouTube">▶</a>
+                <a href="#" title="WhatsApp">W</a>
+            </div>
+        </div>
+
+        <!-- NAVBAR -->
+        <nav id="navbar">
+            <div class="logo" onclick="goTo('home')">
+                <div class="logo-emblem">
+                    <img src="/IMG-20260512-WA0002.jpg" alt="logo">
+                </div>
+                <div class="logo-text">
+                    <h1>Institut Kyeshero</h1>
+                    <p>Conscience dans le travail et la discipline</p>
+                </div>
+            </div>
+            <div class="nav-links" id="navLinks">
+                <a href="index.html" id="nl-home">Accueil</a>
+                <a href="sections.html" id="nl-sections">Sections</a>
+                <a href="actualites.html" class="active" id="nl-actu">Actualités</a>
+                <a href="galerie.html" id="nl-galerie">Galerie</a>
+                <a href="propos.html" id="nl-apropos">À Propos</a>
+                <a href="contacts.html" id="nl-contact">Contact</a>
+                <a href="espace-numerique.html" class="nav-espace">Espace Numérique</a>
+            </div>
+            <div class="hamburger" onclick="openMobileNav()">
+                <span></span><span></span><span></span>
+            </div>
+        </nav>
+
+        <!-- MOBILE NAV -->
+        <div class="mobile-nav">
+            <div class="mobile-nav-header">
+                <div class="logo">
+                    <div class="logo-emblem">
+                        <img src="/logo (2).png" alt="logo">
+                    </div>
+                    <div class="logo-text" style="filter:invert(1) brightness(2)">
+                        <h1>Institut Kyeshero</h1>
+                        <p>Conscience dans le travail et la discipline</p>
+                    </div>
+                </div>
+                <button class="mob-close" onclick="closeMobileNav()">✕</button>
+            </div>
+            <a href="index.html">Accueil</a>
+            <a href="sections.html">Sections & Formation</a>
+            <a href="actualites.html">Actualités</a>
+            <a href="galerie.html">Galerie</a>
+            <a href="propos.html">À Propos</a>
+            <a href="contacts.html">Contact & Inscriptions</a>
+            <a href="espace-numerique.html" style="color:var(--gold-light)">🎓 Espace
+                Numérique</a>
+        </div>
+
+
+        <!---------------- actualites ---------------->
+        <!-- <div id="view-actualites" style="display:none"> -->
+        <div style="background:var(--navy);padding:48px;color:#fff;text-align:center">
+            <div class="section-label" style="justify-content:center;color:var(--gold-light)">Actualités</div>
+            <h1 class="section-h2" style="color:#fff">Toutes les Actualités</h1>
+            <p style="color:rgba(255,255,255,.7)">Restez informé de la vie de l'Institut Kyeshero</p>
+        </div>
+        <section class="section">
+            <div class="section-inner">
+                <div class="news-grid">
+                    <div class="news-card">
+                        <div class="news-img tall"
+                            style="background-image:url('https://images.unsplash.com/photo-1544717305-2782549b5136?w=800&q=80')">
+                            <div class="news-category">EXETAT</div>
+                        </div>
+                        <div class="news-body">
+                            <div class="news-date">20 Avril 2025</div>
+                            <div class="news-title">EXETAT 2024 : Taux de réussite exceptionnel à l'Institut
+                                Kyeshero
+                            </div>
+                            <div class="news-excerpt">L'ensemble du corps enseignant et les élèves ont fourni des
+                                efforts
+                                remarquables tout au long de l'année scolaire. Ce taux de réussite record illustre
+                                la
+                                qualité de
+                                l'encadrement académique proposé par notre institution.</div>
+                            <a href="#" class="news-link">Lire la suite <span class="arrow">→</span></a>
+                        </div>
+                    </div>
+                    <div class="news-card">
+                        <div class="news-img"
+                            style="background-image:url('https://images.unsplash.com/photo-1529390079861-591de354faf5?w=600&q=80')">
+                            <div class="news-category">Rentrée</div>
+                        </div>
+                        <div class="news-body">
+                            <div class="news-date">05 Septembre 2025</div>
+                            <div class="news-title">Rentrée 2025-2026 : Accueil des nouveaux élèves</div>
+                            <div class="news-excerpt">Le préfet des études et l'ensemble du personnel administratif
+                                ont
+                                accueilli
+                                les nouvelles recrues avec enthousiasme lors d'une cérémonie d'ouverture officielle.
+                            </div>
+                            <a href="#" class="news-link">Lire la suite <span class="arrow">→</span></a>
+                        </div>
+                    </div>
+                    <div class="news-card">
+                        <div class="news-img"
+                            style="background-image:url('https://images.unsplash.com/photo-1551731409-43eb3e517a1a?w=600&q=80')">
+                            <div class="news-category">Sport</div>
+                        </div>
+                        <div class="news-body">
+                            <div class="news-date">10 Avril 2025</div>
+                            <div class="news-title">Journée sportive & culturelle annuelle</div>
+                            <div class="news-excerpt">Une journée festive et fraternelle rassemblant élèves,
+                                enseignants
+                                et parents
+                                autour d'activités sportives, artistiques et culturelles.</div>
+                            <a href="#" class="news-link">Lire la suite <span class="arrow">→</span></a>
+                        </div>
+                    </div>
+                    <div class="news-card">
+                        <div class="news-img"
+                            style="background-image:url('https://images.unsplash.com/photo-1571260899304-425eee4c7efc?w=600&q=80')">
+                            <div class="news-category">Cérémonie</div>
+                        </div>
+                        <div class="news-body">
+                            <div class="news-date">04 Juillet 2025</div>
+                            <div class="news-title">Cérémonie de remise de diplômes 2025</div>
+                            <div class="news-excerpt">Une cérémonie solennelle marquera la fin de cycle pour les
+                                élèves
+                                de
+                                terminale. Parents et dignitaires sont cordialement invités.</div>
+                            <a href="#" class="news-link">Lire la suite <span class="arrow">→</span></a>
+                        </div>
+                    </div>
+                    <div class="news-card">
+                        <div class="news-img"
+                            style="background-image:url('https://images.unsplash.com/photo-1580582932707-520aed937b7b?w=600&q=80')">
+                            <div class="news-category">Admin</div>
+                        </div>
+                        <div class="news-body">
+                            <div class="news-date">15 Juillet 2025</div>
+                            <div class="news-title">Ouverture des inscriptions 2025-2026</div>
+                            <div class="news-excerpt">Les inscriptions pour l'année scolaire 2025-2026 sont
+                                officiellement ouvertes.
+                                Rendez-vous au secrétariat avec les pièces requises.</div>
+                            <a href="#" class="news-link">Lire la suite <span class="arrow">→</span></a>
+                        </div>
+                    </div>
+                    <div class="news-card">
+                        <div class="news-img"
+                            style="background-image:url('https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?w=600&q=80')">
+                            <div class="news-category">Science</div>
+                        </div>
+                        <div class="news-body">
+                            <div class="news-date">22 Mars 2025</div>
+                            <div class="news-title">Foire scientifique inter-sections 2025</div>
+                            <div class="news-excerpt">Les sections Bio-Chimie, Électricité et Mécanique ont présenté
+                                leurs projets
+                                lors d'une foire interne récompensant les meilleures innovations.</div>
+                            <a href="#" class="news-link">Lire la suite <span class="arrow">→</span></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- FOOTER -->
+    <footer id="main-footer">
+        <div class="footer-grid">
+            <div class="footer-brand">
+                <div class="logo">
+                    <div class="logo-emblem">
+                        <img src="/logo (2).png" alt="logo">
+                        <p> École conventionnée protestante de la 8e CEPAC, formant depuis 1997 les jeunes de Goma
+                            aux
+                            valeurs
+                            d'excellence, de discipline et de foi.
+                        </p>
+                    </div>
+                    <div class="logo-text" style="filter:invert(1) brightness(2)">
+                    </div>
+                </div>
+                <div class="footer-socials">
+                    <a href="#"><img src="./icons/book.png"></a>
+                    <a href="#"><img src="./icons/x.png"></a>
+                    <a href="#"><img src="./icons/insta.png"></a>
+                    <!-- <a href="#"><img src="./icons/whastapp.png"></a> -->
+                </div>
+            </div>
+            <div class="footer-col">
+                <h4>Accès rapide</h4>
+                <ul>
+                    <li><a href="#" onclick="goTo('home');return false">Accueil</a></li>
+                    <li><a href="#" onclick="goTo('sections');return false">Nos sections</a></li>
+                    <li><a href="#" onclick="goTo('actualites');return false">Actualités</a></li>
+                    <li><a href="#" onclick="goTo('galerie');return false">Galerie</a></li>
+                    <li><a href="#" onclick="goTo('apropos');return false">À propos</a></li>
+                    <li><a href="#" onclick="goTo('contact');return false">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Sections</h4>
+                <ul>
+                    <li><a href="#">Construction</a></li>
+                    <li><a href="#">Coupe Couture</a></li>
+                    <li><a href="#">Électricité</a></li>
+                    <li><a href="#">Mécanique</a></li>
+                    <li><a href="#">Education de base</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Contact</h4>
+                <ul>
+                    <li><a href="#">Av. Kyeshero, Goma</a></li>
+                    <li><a href="#">+243 97 123 4567</a></li>
+                    <li><a href="#">contact@ikyeshero-goma.cd</a></li>
+                    <li><a href="#">Lun-Ven 7h30-16h30</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <span>&copy; 2026 Institut Kyeshero de Goma — Tous droits réservés</span>
+            <div class="footer-motto">
+                <span style="font-size:13px;color:rgba(255,255,255,.5)">Conscience</span>
+                <span style="font-size:13px;color:rgba(255,255,255,.5)">Travail</span>
+                <span style="font-size:13px;color:rgba(255,255,255,.5)">Discipline</span>
+            </div>
+        </div>
+    </footer>
+
+    <!-- WHATSAPP -->
+    <a href="https://wa.me/243971234567" class="wa-btn" target="_blank">
+        <img src="./icons/whastap.png">
+    </a>
+</body>
+
+</html>
