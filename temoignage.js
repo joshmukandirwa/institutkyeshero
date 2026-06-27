@@ -196,7 +196,7 @@ async function sendTemoignage() {
         btn.disabled = false;
         showToast(
             'success',
-            'Merci, ' + nom.split(' ')[0] + ' ! 🙏',
+            'Merci, ' + nom.split(' ')[0] + ' ! ',
             'Votre témoignage a bien été reçu et nous touche profondément. Nous allons l\'examiner avec soin avant de le partager avec notre communauté. Que Dieu vous bénisse !',
             '✓ Fermer et revenir'
         );
