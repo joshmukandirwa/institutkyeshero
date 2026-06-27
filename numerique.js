@@ -153,7 +153,7 @@ function chargerDepuisSheets(callback) {
         .catch(function(err) {
             if (!bloque) finChargement();
             console.error('Sheets fetch error:', err);
-            afficherErreur('⚠️ Impossible de charger les données. Vérifiez votre connexion internet et réessayez.');
+            afficherErreur('Impossible de charger les données. Vérifiez votre connexion internet et réessayez.');
         });
 }
 
