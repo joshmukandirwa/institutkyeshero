@@ -474,7 +474,7 @@
 }
 
 .existing-header {
-    /* text-align: center; */
+    text-align: center;
     margin-bottom: 50px;
 }
 
@@ -596,5 +596,9 @@
     }
     .testi-grid {
         grid-template-columns: 1fr;
+    }
+    .existing-header {
+        text-align: start;
+        margin-bottom: 50px;
     }
 }
