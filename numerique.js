@@ -119,7 +119,7 @@ function construireEleve(raw) {
 
 function afficherChargement(msg) {
     var btn = document.getElementById('btnLogin');
-    btn.textContent = msg || '⏳ Chargement...';
+    btn.textContent = msg || 'Chargement...';
     btn.disabled = true;
     btn.style.opacity = '.7';
 }
@@ -132,7 +132,7 @@ function finChargement() {
 }
 
 function chargerDepuisSheets(callback) {
-    if (!bloque) afficherChargement('⏳ Chargement...');
+    if (!bloque) afficherChargement('Chargement...');
 
     fetch(SHEET_URL)
         .then(function(r) {
@@ -226,7 +226,7 @@ function seConnecter() {
         return;
     }
     if (fmt === 'audela') {
-        afficherErreur('Ce numéro dépasse A3000. Veuillez vérifier votre numéro matricule et réessayer.');
+        afficherErreur('Ce numéro dépasse le format attendu. Veuillez vérifier votre numéro matricule et réessayer.');
         agiter();
         setTimeout(viderInputs, 420);
         return;
@@ -339,7 +339,7 @@ function remplirAbsences(e) {
     var absDiv = document.getElementById('absencesList');
     absDiv.innerHTML = '';
     if (!e.absences || e.absences.length === 0) {
-        absDiv.innerHTML = '<p style="color:#aaa;font-size:14px;padding:10px 0;">Aucune absence enregistrée. 🎉</p>';
+        absDiv.innerHTML = '<p style="color:#aaa;font-size:14px;padding:10px 0;">Aucune absence enregistrée.</p>';
     } else {
         e.absences.forEach(function(a) {
             var div = document.createElement('div');
