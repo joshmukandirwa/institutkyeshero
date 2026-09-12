@@ -5,38 +5,6 @@ const CLOUDINARY_PRESET = "temoignages_ikyeshero";
 // ══ EMAILJS INIT ══
 emailjs.init("AGXhkUZPEkhm_AIZ6");
 
-// ══ NAV SCROLL ══
-window.addEventListener("scroll", () => {
-  document.getElementById("navbar").classList.toggle("scrolled", scrollY > 40);
-  const el = document.getElementById("progress");
-  if (el) {
-    const pct = (scrollY / (document.body.scrollHeight - innerHeight)) * 100;
-    el.style.width = pct + "%";
-  }
-});
-
-// ══ MOBILE NAV ══
-function openMobileNav() {
-  document.getElementById("mobileNav").classList.add("open");
-}
-
-function closeMobileNav() {
-  document.getElementById("mobileNav").classList.remove("open");
-}
-
-// ══ SCROLL REVEAL ══
-const revealObs = new IntersectionObserver(
-  (entries) => {
-    entries.forEach((e) => {
-      if (e.isIntersecting) e.target.classList.add("visible");
-    });
-  },
-  {
-    threshold: 0.15,
-  },
-);
-document.querySelectorAll(".reveal").forEach((el) => revealObs.observe(el));
-
 // ══ ÉTOILES ══
 let selectedNote = 0;
 const starBtns = document.querySelectorAll(".star-btn");

@@ -275,7 +275,7 @@ function verifierEtConnecter(mat, date, classe) {
   if (fmt === "format") {
     finChargement();
     afficherErreur(
-      "Matricule incorrect. Veuillez vérifier votre numéro matricule et réessayer.",
+      "Matricule incorrect. Le format attendu est E0001 jusqu'à E3000.",
     );
     agiter();
     setTimeout(viderInputs, 420);
@@ -373,7 +373,7 @@ function genererChampsEnfants() {
       "</label>" +
       '<input type="text" class="matricule-enfant" id="matriculeEnfant' +
       i +
-      '" placeholder="Ex : E2026" maxlength="10" oninput="this.value=this.value.toUpperCase()" />';
+      '" placeholder="Ex : E0001" maxlength="10" oninput="this.value=this.value.toUpperCase()" />';
     container.appendChild(div);
   }
 
@@ -427,8 +427,8 @@ function seConnecterParent() {
     if (fmt !== "ok") {
       afficherErreur(
         "Matricule enfant " +
-        i +
-        " incorrect. Veuillez vérifier le numéro matricule et réessayer. ",
+          i +
+          " incorrect. Le format attendu est E0001 jusqu'à E3000.",
       );
       agiter();
       return;
@@ -503,9 +503,9 @@ function terminerVerificationParent(email, matricules) {
   if (tousExistent) {
     afficherSucces(
       "<strong>Vérification réussie</strong>Adresse reconnue pour " +
-      matricules.length +
-      (matricules.length > 1 ? " enfants." : " enfant.") +
-      " Le tableau de bord parent complet arrive très bientôt.",
+        matricules.length +
+        (matricules.length > 1 ? " enfants." : " enfant.") +
+        " Le tableau de bord parent complet arrive très bientôt.",
     );
   } else {
     afficherErreur(

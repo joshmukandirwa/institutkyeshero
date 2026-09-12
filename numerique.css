@@ -103,7 +103,15 @@ h1, h2, h3, h4 {
 }
 
 .login-hero .shield img {
-    width: 110px;
+    width: 96px;
+    height: 96px;
+    object-fit: contain;
+    display: block;
+    margin: 0 auto;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, .05);
+    border: 2px solid rgba(243, 185, 138, .5);
+    padding: 10px;
 }
 
 .login-hero h1 {
