@@ -5,11 +5,40 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1.0" />
     <title>Sections</title>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet" />
     <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="./pictures/logos/logoshaut2.png">
 </head>
 
 <body>
+
+    <!-- ═══ PRÉCHARGEUR ═══ -->
+    <div id="site-preloader">
+        <div class="preloader-inner">
+            <div class="preloader-ring"></div>
+            <img src="./logos/logo (2).png" alt="Institut Kyeshero" class="preloader-logo">
+        </div>
+        <p class="preloader-text">Chargement…</p>
+    </div>
+    <script>
+        (function () {
+            var pre = document.getElementById('site-preloader');
+            if (!pre) return;
+            function hide() {
+                pre.classList.add('loaded');
+                setTimeout(function () { pre.remove(); }, 600);
+            }
+            if (document.readyState === 'complete') {
+                hide();
+            } else {
+                window.addEventListener('load', hide);
+                setTimeout(hide, 8000); // filet de sécurité si la connexion est très lente
+            }
+        })();
+    </script>
+
     <div id="progress"></div>
     <div id="page-main">
 
@@ -19,10 +48,10 @@
                 <div class="logo-emblem">
                     <img src="./logos/IMG-20260512-WA0002.jpg" alt="logo">
                 </div>
-                <div class="logo-text">
+                <!-- <div class="logo-text">
                     <h1>Institut Kyeshero</h1>
                     <p>Conscience dans le travail et la discipline</p>
-                </div>
+                </div> -->
             </div>
             <div class="nav-links" id="navLinks">
                 <a href="index.html">Accueil</a>
@@ -46,10 +75,10 @@
                     <div class="logo-emblem">
                         <img src="./logos/logo (2).png" alt="logo">
                     </div>
-                    <div class="logo-text" style="filter:invert(1) brightness(2)">
+                    <!-- <div class="logo-text" style="filter:invert(1) brightness(2)">
                         <h1>Institut Kyeshero</h1>
                         <p>Conscience dans le travail et la discipline</p>
-                    </div>
+                    </div> -->
                 </div>
                 <button class="mob-close" onclick="closeMobileNav()">✕</button>
             </div>
@@ -65,11 +94,16 @@
 
         <!-- ─── SECTIONS ─── -->
         <div>
-            <div style="background:var(--navy);padding:48px;color:#fff;text-align:center">
-                <div class="section-label" style="justify-content:center;color:var(--gold-light)">Formation</div>
-                <h1 class="section-h2" style="color:#fff">Nos Sections Professionnelles</h1>
-                <p style="color:rgba(255,255,255,.7)">4 filières reconnues, un avenir assuré</p>
-            </div>
+            <section class="page-hero">
+                <div class="page-hero-media" style="background-image:url(./pictures/cons.webp)"></div>
+                <span class="page-hero-circle" aria-hidden="true"></span>
+                <span class="page-hero-circle-2" aria-hidden="true"></span>
+                <div class="page-hero-inner">
+                    <div class="hero-eyebrow">Formation</div>
+                    <h1>Nos Sections <em>Professionnelles</em></h1>
+                    <p>4 filières reconnues, un avenir assuré</p>
+                </div>
+            </section>
             <section class="section">
                 <div class="section-inner">
                     <div class="sections-grid">
@@ -141,15 +175,14 @@
         <footer id="main-footer">
             <div class="footer-grid">
                 <div class="footer-brand">
-                    <div class="logo">
+                    <div class="footer-logo-row">
                         <div class="logo-emblem">
                             <img src="./logos/logo (2).png" alt="logo">
-                            <p> École conventionnée protestante de la 8e CEPAC, formant depuis 1997 les jeunes de Goma aux valeurs d'excellence, de discipline et de foi.
-                            </p>
                         </div>
-                        <div class="logo-text" style="filter:invert(1) brightness(2)">
-                        </div>
+                        <span class="footer-brand-name">Institut Kyeshero</span>
                     </div>
+                    <p class="footer-brand-desc">École conventionnée protestante de la 8e CEPAC, formant depuis 1997
+                        les jeunes de Goma aux valeurs d'excellence, de discipline et de foi.</p>
                     <div class="footer-socials">
                         <a href="#"><img src="./icons/book.png"></a>
                         <a href="#"><img src="./icons/x.png"></a>
@@ -192,7 +225,7 @@
                 <span>&copy; 2026 Institut Kyeshero de Goma — Tous droits réservés</span>
                 <div class="footer-motto">
                     <span style="font-size:13px;color:rgba(255,255,255,.5)">
-                        Développé par Josué Mukandirwa | EbenJosh Tech & Services
+                        Conçu par EbenJosh Tech & Services
                     </span>
                 </div>
             </div>

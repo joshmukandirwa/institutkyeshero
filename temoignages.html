@@ -5,83 +5,123 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1.0" />
     <title>Témoignages</title>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet" />
     <link rel="stylesheet" href="style.css" />
     <link rel="stylesheet" href="temoignages.css">
+    <link rel="icon" href="./pictures/logos/logoshaut2.png">
     <!-- EmailJS -->
     <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 </head>
 
 <body>
-    <div id="progress"></div>
 
-    <!-- NAVBAR -->
-    <nav id="navbar" id="mobileNav">
-        <div class="logo" onclick="location.href='index.html'">
-            <div class="logo-emblem">
-                <img src="./logos/IMG-20260512-WA0002.jpg" alt="logo">
-            </div>
-            <div class="logo-text">
-                <h1>Institut Kyeshero</h1>
-                <p>Conscience dans le travail et la discipline</p>
-            </div>
+    <!-- ═══ PRÉCHARGEUR ═══ -->
+    <div id="site-preloader">
+        <div class="preloader-inner">
+            <div class="preloader-ring"></div>
+            <img src="./logos/logo (2).png" alt="Institut Kyeshero" class="preloader-logo">
         </div>
-        <div class="nav-links" id="navLinks">
+        <p class="preloader-text">Chargement…</p>
+    </div>
+    <script>
+        (function () {
+            var pre = document.getElementById('site-preloader');
+            if (!pre) return;
+            function hide() {
+                pre.classList.add('loaded');
+                setTimeout(function () { pre.remove(); }, 600);
+            }
+            if (document.readyState === 'complete') {
+                hide();
+            } else {
+                window.addEventListener('load', hide);
+                setTimeout(hide, 8000); // filet de sécurité si la connexion est très lente
+            }
+        })();
+    </script>
+
+    <div id="progress"></div>
+    <div id="page-main">
+
+        <!-- NAVBAR -->
+        <nav id="navbar">
+            <div class="logo" onclick="location.href='index.html'">
+                <div class="logo-emblem">
+                    <img src="./logos/IMG-20260512-WA0002.jpg" alt="logo">
+                </div>
+                <!-- <div class="logo-text">
+                    <h1>Institut Kyeshero</h1>
+                    <p>Conscience dans le travail et la discipline</p>
+                </div> -->
+            </div>
+            <div class="nav-links" id="navLinks">
+                <a href="index.html">Accueil</a>
+                <a href="sections.html">Sections</a>
+                <a href="actualites.html">Actualités</a>
+                <a href="galerie.html">Galerie</a>
+                <a href="propos.html">À Propos</a>
+                <a href="contacts.html">Contact</a>
+                <a href="temoignages.html" class="active">Témoignages</a>
+                <a href="espacenumerique.html" class="nav-espace">Espace Numérique</a>
+            </div>
+            <div class="hamburger" onclick="openMobileNav()">
+                <span></span><span></span><span></span>
+            </div>
+        </nav>
+
+        <!-- MOBILE NAV -->
+        <div class="mobile-nav" id="mobileNav">
+            <div class="mobile-nav-header">
+                <div class="logo">
+                    <div class="logo-emblem">
+                        <img src="./logos/logo (2).png" alt="logo">
+                    </div>
+                    <!-- <div class="logo-text" style="filter:invert(1) brightness(2)">
+                        <h1>Institut Kyeshero</h1>
+                        <p>Conscience dans le travail et la discipline</p>
+                    </div> -->
+                </div>
+                <button class="mob-close" onclick="closeMobileNav()">✕</button>
+            </div>
             <a href="index.html">Accueil</a>
-            <a href="sections.html">Sections</a>
+            <a href="sections.html">Sections & Formation</a>
             <a href="actualites.html">Actualités</a>
             <a href="galerie.html">Galerie</a>
             <a href="propos.html">À Propos</a>
-            <a href="contacts.html">Contact</a>
-            <a href="temoignages.html" class="active">Témoignages</a>
-            <a href="espacenumerique.html" class="nav-espace">Espace Numérique</a>
+            <a href="contacts.html">Contact & Inscriptions</a>
+            <a href="temoignages.html" style="color:var(--gold-light)">Témoignages</a>
+            <a href="espacenumerique.html" style="color:var(--gold-light)">Espace Numérique</a>
         </div>
-        <div class="hamburger" onclick="openMobileNav()">
-            <span></span><span></span><span></span>
-        </div>
-    </nav>
 
-    <!-- MOBILE NAV -->
-    <div class="mobile-nav" id="mobileNav">
-        <div class="mobile-nav-header">
-            <div class="logo">
-                <div class="logo-emblem">
-                    <img src="./logos/logo (2).png" alt="logo">
+        <div id="view-temoignages">
+            <section class="page-hero">
+                <div class="page-hero-media" style="background-image:url(./pictures/couture.jpg)"></div>
+                <span class="page-hero-circle" aria-hidden="true"></span>
+                <span class="page-hero-circle-2" aria-hidden="true"></span>
+                <div class="page-hero-inner">
+                    <div class="hero-eyebrow">Temoignages</div>
+                    <h1>Ce que disent nos <em>élèves & parents</em></h1>
+                    <p>Chaque témoignage est une pierre posée sur le chemin de notre excellence. Partagez votre
+                        expérience — votre voix compte</p>
                 </div>
-                <div class="logo-text" style="filter:invert(1) brightness(2)">
-                    <h1>Institut Kyeshero</h1>
-                    <p>Conscience dans le travail et la discipline</p>
-                </div>
-            </div>
-            <button class="mob-close" onclick="closeMobileNav()">✕</button>
-        </div>
-        <a href="index.html">Accueil</a>
-        <a href="sections.html">Sections & Formation</a>
-        <a href="actualites.html">Actualités</a>
-        <a href="galerie.html">Galerie</a>
-        <a href="propos.html">À Propos</a>
-        <a href="contacts.html">Contact & Inscriptions</a>
-        <a href="temoignages.html" style="color:var(--gold-light)">Témoignages</a>
-        <a href="espacenumerique.html" style="color:var(--gold-light)">Espace Numérique</a>
-    </div>
-
-    <div style="background:var(--navy);padding:48px;color:#fff;text-align:center">
-        <div class="section-label" style="justify-content:center;color:var(--gold-light)">Temoignages</div>
-        <h1 class="section-h2" style="color:#fff">Ce que disent nos<br><em>élèves & parents</em></h1>
-        <p style="color:rgba(255,255,255,.7)">Chaque témoignage est une pierre posée sur le chemin de notre excellence. Partagez votre expérience — votre voix compte</p>
-    </div>
+            </section>
 
 
-    <!-- ══ TÉMOIGNAGES EXISTANTS ══ -->
-    <section class="existing-section">
-        <div class="existing-inner">
-            <div class="existing-header reveal">
-                <div class="section-label">Ce qu'ils disent</div>
-                <h3>Paroles de notre communauté</h3>
-                <!-- <p>Des voix authentiques, des parcours réels, une famille unie autour de l'excellence.</p> -->
-                <p>Les temoignages de notre communaute seront bientot disponibles ici.</p>
-            </div>
-            <!-- <div class="testi-grid">
+            <!-- ══ TÉMOIGNAGES EXISTANTS ══ -->
+            <section class="existing-section">
+                <div class="existing-inner">
+                    <div class="existing-header reveal">
+                        <div class="section-label">Ce qu'ils disent</div>
+                        <h3>Paroles de notre communauté</h3>
+                    </div>
+                    <div class="empty-state reveal">
+                        <div class="empty-state-icon">"</div>
+                        <p>Les témoignages de notre communauté seront bientôt disponibles ici. Soyez parmi les premiers
+                            à partager votre expérience ci-dessous !</p>
+                    </div>
+                    <!-- <div class="testi-grid">
 
                 <div class="testi-item reveal">
                     <span class="quote-mark">"</span>
@@ -126,153 +166,157 @@
                 </div>
 
             </div> -->
-        </div>
-    </section>
-
-    <!-- ══ FORMULAIRE ══ -->
-    <section class="temo-section">
-        <div class="temo-inner">
-            <div class="section-label">Votre tour</div>
-            <h3>Partagez votre témoignage</h3>
-            <p class="sub">Quelques mots de vous, c'est une lumière pour ceux qui hésitent encore. Remplissez ce formulaire — on le lira avec attention et reconnaissance.</p>
-
-            <div class="temo-form-card reveal">
-
-                <!-- Nom & Email -->
-                <div class="temo-row">
-                    <div class="temo-field">
-                        <label for="t-nom">Votre nom complet</label>
-                        <input type="text" id="t-nom" placeholder="ex: Amani Pacifique" required />
-                    </div>
-                    <div class="temo-field">
-                        <label for="t-email">Adresse e-mail</label>
-                        <input type="email" id="t-email" placeholder="ex: amani@gmail.com" required />
-                    </div>
                 </div>
+            </section>
 
-                <!-- Note étoiles -->
-                <div style="margin-bottom:24px">
-                    <div class="stars-label">Note globale</div>
-                    <div class="stars-wrap" id="starsWrap" role="group" aria-label="Note de 1 à 5 étoiles">
-                        <button class="star-btn" type="button" data-val="1" aria-label="1 étoile">★</button>
-                        <button class="star-btn" type="button" data-val="2" aria-label="2 étoiles">★</button>
-                        <button class="star-btn" type="button" data-val="3" aria-label="3 étoiles">★</button>
-                        <button class="star-btn" type="button" data-val="4" aria-label="4 étoiles">★</button>
-                        <button class="star-btn" type="button" data-val="5" aria-label="5 étoiles">★</button>
+            <!-- ══ FORMULAIRE ══ -->
+            <section class="temo-section">
+                <div class="temo-inner">
+                    <div class="section-label">Votre tour</div>
+                    <h3>Partagez votre témoignage</h3>
+                    <p class="sub">Quelques mots de vous, c'est une lumière pour ceux qui hésitent encore. Remplissez ce
+                        formulaire — on le lira avec attention et reconnaissance.</p>
+
+                    <div class="temo-form-card reveal">
+
+                        <!-- Nom & Email -->
+                        <div class="temo-row">
+                            <div class="temo-field">
+                                <label for="t-nom">Votre nom complet</label>
+                                <input type="text" id="t-nom" placeholder="ex: Amani Pacifique" required />
+                            </div>
+                            <div class="temo-field">
+                                <label for="t-email">Adresse e-mail</label>
+                                <input type="email" id="t-email" placeholder="ex: amani@gmail.com" required />
+                            </div>
+                        </div>
+
+                        <!-- Note étoiles -->
+                        <div style="margin-bottom:24px">
+                            <div class="stars-label">Note globale</div>
+                            <div class="stars-wrap" id="starsWrap" role="group" aria-label="Note de 1 à 5 étoiles">
+                                <button class="star-btn" type="button" data-val="1" aria-label="1 étoile">★</button>
+                                <button class="star-btn" type="button" data-val="2" aria-label="2 étoiles">★</button>
+                                <button class="star-btn" type="button" data-val="3" aria-label="3 étoiles">★</button>
+                                <button class="star-btn" type="button" data-val="4" aria-label="4 étoiles">★</button>
+                                <button class="star-btn" type="button" data-val="5" aria-label="5 étoiles">★</button>
+                            </div>
+                            <div class="stars-hint" id="starsHint">Cliquez sur une étoile pour noter</div>
+                        </div>
+
+                        <!-- Message / Témoignage -->
+                        <div class="temo-field" style="margin-bottom:24px">
+                            <label for="t-msg">Votre témoignage</label>
+                            <textarea id="t-msg"
+                                placeholder="Racontez-nous votre expérience à l'Institut Kyeshero — votre parcours, ce que vous avez aimé, ce qui vous a marqué..."></textarea>
+                        </div>
+
+                        <!-- Photo -->
+                        <div style="margin-bottom:30px">
+                            <div class="stars-label" style="margin-bottom:10px">Votre photo <span
+                                    style="font-weight:400;color:var(--text);letter-spacing:0;text-transform:none;font-size:12px">(optionnelle)</span>
+                            </div>
+                            <div class="photo-drop" id="photoDrop">
+                                <input type="file" id="photoFile" accept="image/*" />
+                                <span class="drop-icon">🖼️</span>
+                                <p><strong>Glissez votre photo ici</strong> ou cliquez pour parcourir</p>
+                                <p style="font-size:12px;margin-top:6px;">JPG, PNG, WEBP · max 8 Mo</p>
+                            </div>
+                            <div class="photo-preview-wrap" id="photoPreviewWrap">
+                                <img id="photoPreview" src="" alt="aperçu" />
+                                <span id="photoName" style="font-size:13px;color:var(--text)"></span>
+                                <button class="photo-remove" onclick="removePhoto()">✕ Supprimer la photo</button>
+                            </div>
+                        </div>
+
+                        <!-- Submit -->
+                        <button class="btn-submit" id="submitBtn" onclick="sendTemoignage()">
+                            <div class="spinner"></div>
+                            <span class="btn-text">Envoyer mon témoignage</span>
+                        </button>
+
                     </div>
-                    <div class="stars-hint" id="starsHint">Cliquez sur une étoile pour noter</div>
+                    <!-- .temo-form-card -->
                 </div>
+            </section>
 
-                <!-- Message / Témoignage -->
-                <div class="temo-field" style="margin-bottom:24px">
-                    <label for="t-msg">Votre témoignage</label>
-                    <textarea id="t-msg" placeholder="Racontez-nous votre expérience à l'Institut Kyeshero — votre parcours, ce que vous avez aimé, ce qui vous a marqué..."></textarea>
+            <!-- ══ TOAST OVERLAY ══ -->
+            <div class="toast-overlay" id="toastOverlay">
+                <div class="toast-box">
+                    <div class="toast-icon" id="toastIcon"></div>
+                    <h4 id="toastTitle"></h4>
+                    <p id="toastMsg"></p>
+                    <button class="toast-close" id="toastClose" onclick="closeToast()"></button>
                 </div>
-
-                <!-- Photo -->
-                <div style="margin-bottom:30px">
-                    <div class="stars-label" style="margin-bottom:10px">Votre photo <span style="font-weight:400;color:var(--muted);letter-spacing:0;text-transform:none;font-size:12px">(optionnelle)</span>
-                    </div>
-                    <div class="photo-drop" id="photoDrop">
-                        <input type="file" id="photoFile" accept="image/*" />
-                        <span class="drop-icon">🖼️</span>
-                        <p><strong>Glissez votre photo ici</strong> ou cliquez pour parcourir</p>
-                        <p style="font-size:12px;margin-top:6px;">JPG, PNG, WEBP · max 8 Mo</p>
-                    </div>
-                    <div class="photo-preview-wrap" id="photoPreviewWrap">
-                        <img id="photoPreview" src="" alt="aperçu" />
-                        <span id="photoName" style="font-size:13px;color:var(--muted)"></span>
-                        <button class="photo-remove" onclick="removePhoto()">✕ Supprimer la photo</button>
-                    </div>
-                </div>
-
-                <!-- Submit -->
-                <button class="btn-submit" id="submitBtn" onclick="sendTemoignage()">
-                    <div class="spinner"></div>
-                    <span class="btn-text">Envoyer mon témoignage</span>
-                </button>
-
-            </div>
-            <!-- .temo-form-card -->
-        </div>
-    </section>
-
-    <!-- ══ TOAST OVERLAY ══ -->
-    <div class="toast-overlay" id="toastOverlay">
-        <div class="toast-box">
-            <div class="toast-icon" id="toastIcon"></div>
-            <h4 id="toastTitle"></h4>
-            <p id="toastMsg"></p>
-            <button class="toast-close" id="toastClose" onclick="closeToast()"></button>
-        </div>
-    </div>
-
-    <!-- FOOTER -->
-    <footer id="main-footer">
-        <div class="footer-grid">
-            <div class="footer-brand">
-                <div class="logo">
-                    <div class="logo-emblem">
-                        <img src="./logos/logo (2).png" alt="logo">
-                        <p> École conventionnée protestante de la 8e CEPAC, formant depuis 1997 les jeunes de Goma aux valeurs d'excellence, de discipline et de foi.
-                        </p>
-                    </div>
-                    <div class="logo-text" style="filter:invert(1) brightness(2)">
-                    </div>
-                </div>
-                <div class="footer-socials">
-                    <a href="#"><img src="./icons/book.png"></a>
-                    <a href="#"><img src="./icons/x.png"></a>
-                    <a href="#"><img src="./icons/insta.png"></a>
-                    <!-- <a href="#"><img src="./icons/whastapp.png"></a> -->
-                </div>
-            </div>
-            <div class="footer-col">
-                <h4>Accès rapide</h4>
-                <ul>
-                    <li><a href="index.html">Accueil</a></li>
-                    <li><a href="sections.html">Nos sections</a></li>
-                    <li><a href="actualites.html">Actualités</a></li>
-                    <li><a href="galerie.html">Galerie</a></li>
-                    <li><a href="propos.html">À propos</a></li>
-                    <li><a href="contacts.html">Contact</a></li>
-                </ul>
-            </div>
-            <div class="footer-col">
-                <h4>Sections</h4>
-                <ul>
-                    <li><a href="#">Construction</a></li>
-                    <li><a href="#">Coupe Couture</a></li>
-                    <li><a href="#">Électricité</a></li>
-                    <li><a href="#">Mécanique</a></li>
-                    <li><a href="#">Education de base</a></li>
-                </ul>
-            </div>
-            <div class="footer-col">
-                <h4>Contact</h4>
-                <ul>
-                    <li><a href="#">Av. Kyeshero, Goma</a></li>
-                    <li><a href="#">+243 97 123 4567</a></li>
-                    <li><a href="#">contact@ikyeshero-goma.cd</a></li>
-                    <li><a href="#">Lun-Ven 7h30-16h30</a></li>
-                </ul>
             </div>
         </div>
-        <div class="footer-bottom">
-            <span>&copy; 2026 Institut Kyeshero de Goma — Tous droits réservés</span>
-            <div class="footer-motto">
-                <span style="font-size:13px;color:rgba(255,255,255,.5)">
-                    Développé par Josué Mukandirwa | EbenJosh Tech & Services
-                </span>
-            </div>
-        </div>
-    </footer>
+        <!-- /view-temoignages -->
 
-    <!-- WHATSAPP -->
-    <a href="https://wa.me/243971234567" class="wa-btn" target="_blank">
-        <img src="./icons/whastap.png">
-    </a>
-    <script src="temoignage.js"></script>
+        <!-- FOOTER -->
+        <footer id="main-footer">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <div class="footer-logo-row">
+                        <div class="logo-emblem">
+                            <img src="./logos/logo (2).png" alt="logo">
+                        </div>
+                        <span class="footer-brand-name">Institut Kyeshero</span>
+                    </div>
+                    <p class="footer-brand-desc">École conventionnée protestante de la 8e CEPAC, formant depuis 1997
+                        les jeunes de Goma aux valeurs d'excellence, de discipline et de foi.</p>
+                    <div class="footer-socials">
+                        <a href="#"><img src="./icons/book.png"></a>
+                        <a href="#"><img src="./icons/x.png"></a>
+                        <a href="#"><img src="./icons/insta.png"></a>
+                        <!-- <a href="#"><img src="./icons/whastapp.png"></a> -->
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h4>Accès rapide</h4>
+                    <ul>
+                        <li><a href="index.html">Accueil</a></li>
+                        <li><a href="sections.html">Nos sections</a></li>
+                        <li><a href="actualites.html">Actualités</a></li>
+                        <li><a href="galerie.html">Galerie</a></li>
+                        <li><a href="propos.html">À propos</a></li>
+                        <li><a href="contacts.html">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Sections</h4>
+                    <ul>
+                        <li><a href="#">Construction</a></li>
+                        <li><a href="#">Coupe Couture</a></li>
+                        <li><a href="#">Électricité</a></li>
+                        <li><a href="#">Mécanique</a></li>
+                        <li><a href="#">Education de base</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Contact</h4>
+                    <ul>
+                        <li><a href="#">Av. Kyeshero, Goma</a></li>
+                        <li><a href="#">+243 97 123 4567</a></li>
+                        <li><a href="#">contact@ikyeshero-goma.cd</a></li>
+                        <li><a href="#">Lun-Ven 7h30-16h30</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <span>&copy; 2026 Institut Kyeshero de Goma — Tous droits réservés</span>
+                <div class="footer-motto">
+                    <span style="font-size:13px;color:rgba(255,255,255,.5)">
+                        Conçu par EbenJosh Tech & Services
+                    </span>
+                </div>
+            </div>
+        </footer>
+
+        <!-- WHATSAPP -->
+        <a href="https://wa.me/243971234567" class="wa-btn" target="_blank">
+            <img src="./icons/whastap.png">
+        </a>
+        <script src="temoignage.js"></script>
 
 </body>
 

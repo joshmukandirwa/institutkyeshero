@@ -5,11 +5,40 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1.0" />
     <title>Institut Kyeshero - Accueil</title>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet" />
     <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="./pictures/logos/logoshaut2.png">
 </head>
 
 <body>
+
+    <!-- ═══ PRÉCHARGEUR ═══ -->
+    <div id="site-preloader">
+        <div class="preloader-inner">
+            <div class="preloader-ring"></div>
+            <img src="./logos/logo (2).png" alt="Institut Kyeshero" class="preloader-logo">
+        </div>
+        <p class="preloader-text">Chargement…</p>
+    </div>
+    <script>
+        (function () {
+            var pre = document.getElementById('site-preloader');
+            if (!pre) return;
+            function hide() {
+                pre.classList.add('loaded');
+                setTimeout(function () { pre.remove(); }, 600);
+            }
+            if (document.readyState === 'complete') {
+                hide();
+            } else {
+                window.addEventListener('load', hide);
+                setTimeout(hide, 8000); // filet de sécurité si la connexion est très lente
+            }
+        })();
+    </script>
+
     <div id="progress"></div>
     <div id="page-main">
 
@@ -19,10 +48,10 @@
                 <div class="logo-emblem">
                     <img src="./logos/IMG-20260512-WA0002.jpg" alt="logo">
                 </div>
-                <div class="logo-text">
+                <!-- <div class="logo-text">
                     <h1>Institut Kyeshero</h1>
                     <p>Conscience dans le travail et la discipline</p>
-                </div>
+                </div> -->
             </div>
             <div class="nav-links" id="navLinks">
                 <a href="index.html" class="active">Accueil</a>
@@ -40,16 +69,17 @@
         </nav>
 
         <!-- MOBILE NAV -->
+
         <div class="mobile-nav" id="mobileNav">
             <div class="mobile-nav-header">
                 <div class="logo">
                     <div class="logo-emblem">
                         <img src="./logos/logo (2).png" alt="logo">
                     </div>
-                    <div class="logo-text" style="filter:invert(1) brightness(2)">
+                    <!-- <div class="logo-text" style="filter:invert(1) brightness(2)">
                         <h1>Institut Kyeshero</h1>
                         <p>Conscience dans le travail et la discipline</p>
-                    </div>
+                    </div> -->
                 </div>
                 <button class="mob-close" onclick="closeMobileNav()">✕</button>
             </div>
@@ -66,37 +96,48 @@
         <div id="view-home">
 
             <!-- HERO -->
-            <section class="hero">
-                <div class="hero-slides">
-                    <div class="hslide hslide-1 active">
-                        <div class="hslide-overlay"></div>
+            <section class="hero reveal">
+                <div class="hero-media">
+                    <div class="hero-slides">
+                        <div class="hslide hslide-1 active">
+                            <div class="hslide-overlay" style="background-image:url(./pictures/back/qw.jpg);">
+                            </div>
+                        </div>
+                        <div class="hslide hslide-2">
+                            <div class="hslide-overlay" style="background-image:url(./pictures/back/qwe.jpg);">
+                            </div>
+                        </div>
+                        <div class="hslide hslide-3">
+                            <div class="hslide-overlay" style="background-image:url(./pictures/back/qwer.jpg);">
+                            </div>
+                        </div>
+                        <div class="hslide hslide-4">
+                            <div class="hslide-overlay" style="background-image:url(./pictures/back/qwert.jpg);">
+                            </div>
+                        </div>
                     </div>
-                    <div class="hslide hslide-2">
-                        <div class="hslide-overlay"></div>
-                    </div>
-                    <div class="hslide hslide-3">
-                        <div class="hslide-overlay"></div>
-                    </div>
-                    <div class="hslide hslide-4">
-                        <div class="hslide-overlay"></div>
+                    <!-- <span class="hero-circle" aria-hidden="true"></span> -->
+                    <!-- <div class="hdots" id="heroDots"></div> -->
+                </div>
+                <div class="hero-block">
+                    <div class="hero-orange"></div>
+                    <div class="hero-card">
+                        <div class="hero-eyebrow">Ecole Conventionnée Protestante · 8e CEPAC</div>
+                        <h2>Former les Leaders<em>de Demain</em></h2>
+                        <p class="hero-tagline">Fondé en 1997 à Goma, l'Institut Kyeshero offre une formation
+                            d'excellence dans 4 sections professionnelles, au cœur de la communauté du Nord-Kivu.</p>
+                        <div class="hero-actions">
+                            <a href="#" onclick="goTo('inscriptions');return false" class="btn-gold">S'inscrire
+                                2026-2027 →</a>
+                            <a href="#" onclick="goTo('sections');return false" class="btn-ghost-dark">Nos Sections</a>
+                        </div>
                     </div>
                 </div>
-
-                <div class="hero-content">
-                    <div class="hero-eyebrow">Ecole Conventionnée Protestante · 8e CEPAC</div>
-                    <h2>Former les Leaders<em>de Demain</em></h2>
-                    <p class="hero-tagline">Fondé en 1997 à Goma, l'Institut Kyeshero offre une formation d'excellence dans 4 sections professionnelles, au cœur de la communauté du Nord-Kivu.</p>
-                    <div class="hero-actions">
-                        <a href="#" onclick="goTo('inscriptions');return false" class="btn-gold">S'inscrire 2026-2027
-                            →</a>
-                        <a href="#" onclick="goTo('sections');return false" class="btn-ghost">Nos Sections</a>
-                    </div>
-                </div>
-
-                <!-- <button class="harrow harrow-prev" onclick="heroSlide(-1)">‹</button>
-        <button class="harrow harrow-next" onclick="heroSlide(1)">›</button> -->
                 <div class="hdots" id="heroDots"></div>
+            </section>
 
+            <!-- HERO STATS -->
+            <div class="hero-stats-wrap reveal">
                 <div class="hero-stats">
                     <div class="hero-stat">
                         <div class="num">1997</div>
@@ -115,13 +156,14 @@
                         <div class="lbl">Années d'excellence</div>
                     </div>
                 </div>
-            </section>
+            </div>
 
             <!-- ANNONCE BAND -->
             <div class="annonce-band">
                 <div class="annonce-track" id="annonceTrack">
                     <div class="annonce-item">
-                        <span class="dot"></span>Inscriptions 2026-2027 ouvertes — Contactez le secrétariat dès maintenant
+                        <span class="dot"></span>Inscriptions 2026-2027 ouvertes — Contactez le secrétariat dès
+                        maintenant
                     </div>
                     <!-- <div class="annonce-item">
             <span class="dot"></span>Félicitations à nos lauréats de l'EXETAT 2026 — Taux de réussite record
@@ -131,7 +173,8 @@
                     </div>
                     <!-- duplicate pour boucle fluide -->
                     <div class="annonce-item">
-                        <span class="dot"></span>Inscriptions 2026-2027 ouvertes — Contactez le secrétariat dès maintenant
+                        <span class="dot"></span>Inscriptions 2026-2027 ouvertes — Contactez le secrétariat dès
+                        maintenant
                     </div>
                     <!-- <div class="annonce-item">
             <span class="dot"></span>Félicitations à nos lauréats de l'EXETAT 2026 — Taux de
@@ -142,6 +185,31 @@
                     </div>
                 </div>
             </div>
+
+            <!-- MISSION -->
+            <section class="mission reveal">
+                <p class="eyebrow center">Conscience dans le travail et la discipline</p>
+                <h2 class="mission-title">Depuis 1997, l'Institut Kyeshero forme <strong>les leaders de demain</strong>
+                    à Goma — dans la rigueur, la foi et l'excellence, au service de plus de 2000 élèves.</h2>
+            </section>
+
+            <!-- A PROPOS -->
+            <section class="apropos reveal">
+                <div class="apropos-text">
+                    <p class="eyebrow">À propos de nous</p>
+                    <p class="apropos-desc">École conventionnée protestante de la 8e CEPAC, formant depuis 1997 les
+                        jeunes de Goma aux valeurs d'excellence, de discipline et de foi.</p>
+                    <a href="propos.html" class="link-underline">Lire plus →</a>
+                </div>
+                <div class="apropos-quote">
+                    <span class="quote-mark">&ldquo;</span>
+                    <p>Notre école offre un environnement propice à l'apprentissage, à la découverte et à
+                        l'épanouissement de chaque élève.</p>
+                    <span class="quote-author">— La Direction</span>
+                </div>
+                <div class="apropos-photo" style="background-image:url(./pictures/6eme.jpg)"></div>
+            </section>
+
 
             <!-- ACTUALITÉS -->
             <section class="section reveal" id="sec-actu">
@@ -157,20 +225,24 @@
                     <div class="news-grid">
                         <!-- Card 1 — grande -->
                         <!-- <div class="news-card">
-              <div class="news-img tall"
-                style="background-image:url('https://images.unsplash.com/photo-1544717305-2782549b5136?w=800&q=80')">
-                <div class="news-category">Résultats</div>
-              </div>
-              <div class="news-body">
-                <div class="news-date">20 Avril 2025</div>
-                <div class="news-title">EXETAT 2024 : L'Institut Kyeshero affiche un taux de réussite exceptionnel</div>
-                <div class="news-excerpt">Nos élèves ont brillé lors des examens nationaux de fin d'études.
-                  Félicitations à tous les lauréats et à leurs enseignants dévoués pour ce résultat remarquable.</div>
-                <a href="#" class="news-link">Lire la suite <span class="arrow">→</span></a>
-              </div>
-            </div> -->
+                            <div class="news-img tall"
+                                style="background-image:url('https://images.unsplash.com/photo-1544717305-2782549b5136?w=800&q=80')">
+                                <div class="news-category">Résultats</div>
+                            </div>
+                            <div class="news-body">
+                                <div class="news-date">20 Avril 2025</div>
+                                <div class="news-title">EXETAT 2024 : L'Institut Kyeshero affiche un taux de réussite
+                                    exceptionnel</div>
+                                <div class="news-excerpt">Nos élèves ont brillé lors des examens nationaux de fin
+                                    d'études.
+                                    Félicitations à tous les lauréats et à leurs enseignants dévoués pour ce résultat
+                                    remarquable.</div>
+                                <a href="#" class="news-link">Lire la suite <span class="arrow">→</span></a>
+                            </div>
+                        </div> -->
                         <div class="news-card">
-                            <div class="news-img tall" style="background-image:url(./pictures/incendies.jpg); height: 250px;">
+                            <div class="news-img tall"
+                                style="background-image:url(./pictures/incendies.jpg); height: 250px;">
                                 <div class="news-category">Événements</div>
                             </div>
                             <div class="news-body">
@@ -186,7 +258,8 @@
                         </div>
                         <!-- Card 2 -->
                         <div class="news-card">
-                            <div class="news-img" style="background-image:url('https://images.unsplash.com/photo-1529390079861-591de354faf5?w=600&q=80'); height: 250px;">
+                            <div class="news-img"
+                                style="background-image:url(./pictures/recherche_ecole.png); height: 250px;">
                                 <div class="news-category">Rentrée</div>
                             </div>
                             <div class="news-body">
@@ -199,98 +272,54 @@
                             </div>
                         </div>
                         <!-- Card 3 -->
-                        <div class="news-card">
-                            <div class="news-img" style="background-image:url('https://images.unsplash.com/photo-1551731409-43eb3e517a1a?w=600&q=80'); height: 250px;">
+                        <!-- <div class="news-card">
+                            <div class="news-img" style="background-image:url(./pictures/cloture.jpg); height: 250px;">
                                 <div class="news-category">Annonce</div>
                             </div>
                             <div class="news-body">
-                                <div class="news-date">25 juin 2026</div>
+                                <div class="news-date">02 Juillet 2026</div>
                                 <div class="news-title">Clôture de l'année scolaire 2025-2026</div>
-                                <!-- <div class="news-excerpt">Élèves, enseignants et parents ont partagé une journée mémorable entre compétitions sportives et animations culturelles.</div> -->
+                                <div class="news-excerpt">Élèves, enseignants et parents ont partagé une journée mémorable entre compétitions sportives et animations culturelles.</div>
                                 <a class="news-link" href="/actualites.html">Lire la suite
                                     <span class="arrow">→</span>
                                 </a>
                             </div>
-                        </div>
+                        </div> -->
                     </div>
                 </div>
             </section>
 
             <!-- SECTIONS -->
-            <section class="section section-bg reveal">
-                <div class="section-inner">
-                    <div class="section-head-row">
-                        <div>
-                            <div class="section-label">Formation</div>
-                            <h2 class="section-h2">Nos 4 Sections<br>Professionnelles</h2>
-                        </div>
-                        <p class="section-intro">Des filières reconnues par l'État, encadrées par des enseignants qualifiés, préparant à l'EXETAT national.</p>
+            <section class="features reveal" id="sec-sections">
+                <div class="features-photo" style="background-image:url(./pictures/cons.webp)">
+                    <div class="features-cards">
+                        <a href="sections.html" class="feature-card">
+                            <img class="feature-icon-img" src="./icons/const.png">
+                            <span>Construction</span>
+                        </a>
+                        <a href="sections.html" class="feature-card">
+                            <img class="feature-icon-img" src="./icons/coupe2.png">
+                            <span>Coupe Couture</span>
+                        </a>
+                        <a href="sections.html" class="feature-card">
+                            <img class="feature-icon-img" src="./icons/elec.png">
+                            <span>Électricité</span>
+                        </a>
+                        <a href="sections.html" class="feature-card">
+                            <img class="feature-icon-img" src="./icons/meca.png">
+                            <span>Mécanique</span>
+                        </a>
                     </div>
-                    <div class="sections-grid">
-                        <div class="sect-card">
-                            <div class="sect-card-bg" style="background-image:url(./pictures/cons.webp)">
-                            </div>
-                            <div class="sect-card-overlay"></div>
-                            <!-- <div class="sect-card-tag">Populaire</div> -->
-                            <div class="sect-card-body">
-                                <div class="sect-icon">
-                                    <img src="./icons/const.png">
-                                </div>
-                                <h3>Construction</h3>
-                                <p>Techniques du bâtiment et génie civil appliquées</p>
-                            </div>
-                        </div>
-                        <div class="sect-card">
-                            <div class="sect-card-bg" style="background-image:url(./pictures/couture.jpg)">
-                            </div>
-                            <div class="sect-card-overlay"></div>
-                            <!-- <div class="sect-card-tag">Populaire</div> -->
-                            <div class="sect-card-body">
-                                <div class="sect-icon">
-                                    <img src="./icons/coupe2.png">
-                                </div>
-                                <h3>Coupe Couture</h3>
-                                <p>Couture, création de mode et entrepreneuriat textile</p>
-                            </div>
-                        </div>
-                        <div class="sect-card">
-                            <div class="sect-card-bg" style="background-image:url(./pictures/elec.webp)">
-                            </div>
-                            <div class="sect-card-overlay"></div>
-                            <!-- <div class="sect-card-tag">Populaire</div> -->
-                            <div class="sect-card-body">
-                                <div class="sect-icon">
-                                    <img src="./icons/elec.png">
-                                </div>
-                                <h3>Électricité</h3>
-                                <p>Installations électriques, automatismes et énergie</p>
-                            </div>
-                        </div>
-                        <div class="sect-card">
-                            <div class="sect-card-bg" style="background-image:url(./pictures/meca.jpg)">
-                            </div>
-                            <div class="sect-card-overlay"></div>
-                            <!-- <div class="sect-card-tag">Populaire</div> -->
-                            <div class="sect-card-body">
-                                <div class="sect-icon">
-                                    <img src="./icons/meca.png">
-                                </div>
-                                <h3>Mécanique</h3>
-                                <p>Mécanique générale, entretien et réparation</p>
-                            </div>
-                        </div>
-                        <!-- <div class="sect-card">
-              <div class="sect-card-bg"
-                style="background-image:url('https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?w=700&q=80')">
-              </div>
-              <div class="sect-card-overlay"></div>
-              <div class="sect-card-body">
-                <div class="sect-icon">🔬</div>
-                <h3>Education de base</h3>
-                <p>Sciences biologiques, chimie et sciences de la santé</p>
-              </div>
-            </div> -->
+                </div>
+                <div class="features-side">
+                    <div class="features-note">
+                        <p class="eyebrow">Formation</p>
+                        <h3>Nos 4 sections professionnelles</h3>
+                        <p class="features-desc">Des filières reconnues par l'État, encadrées par des enseignants
+                            qualifiés, préparant à l'EXETAT national.</p>
+                        <a href="sections.html" class="btn-gold">Voir les sections →</a>
                     </div>
+                    <div class="features-orange"></div>
                 </div>
             </section>
 
@@ -321,142 +350,36 @@
             </div>
 
             <!-- TÉMOIGNAGES -->
-            <section class="section reveal">
-                <div class="section-inner">
-                    <div class="section-head-row">
-                        <div>
-                            <div class="section-label">Témoignages</div>
-                            <h2 class="section-h2">Ce que disent nos<br>élèves & parents</h2>
-                        </div>
-                    </div>
-                    <div class="testimonials-wrap">
-                        <p>Les temoignages de notre communaute seront bientot disponibles ici.</p>
-                        <!-- <div class="testimonials-track" id="testiTrack">
-              <div class="testi-card">
-                <div class="testi-stars">★★★★★</div>
-                <p class="testi-text">L'Institut Kyeshero a transformé l'avenir de mon fils. Les enseignants sont
-                  dévoués, l'encadrement est sérieux et la section Électricité lui a donné des compétences réelles pour
-                  trouver du travail. Je recommande sans hésitation.</p>
-                <div class="testi-author">
-                  <div class="testi-avatar"
-                    style="background-image:url('https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=200&q=80')">
-                  </div>
-                  <div>
-                    <div class="testi-name">Mapendo Kambale</div>
-                    <div class="testi-role">Parent d'élève · Section Électricité</div>
-                  </div>
+            <section class="welcome reveal">
+                <div class="welcome-quote">
+                    <span class="quote-mark quote-mark-orange">&ldquo;</span>
+                    <p>Ce que nos élèves et parents disent de l'Institut Kyeshero façonne notre engagement, jour après
+                        jour.</p>
                 </div>
-              </div>
-              <div class="testi-card">
-                <div class="testi-stars">★★★★★</div>
-                <p class="testi-text">Grâce à ma formation en Pédagogie à l'Institut Kyeshero, j'enseigne aujourd'hui
-                  dans une école primaire de Goma. La rigueur académique et les valeurs transmises ici sont
-                  incomparables. C'est une école qui forge le caractère.</p>
-                <div class="testi-author">
-                  <div class="testi-avatar"
-                    style="background-image:url('https://images.unsplash.com/photo-1531123897727-8f129e1688ce?w=200&q=80')">
-                  </div>
-                  <div>
-                    <div class="testi-name">Furaha Amani</div>
-                    <div class="testi-role">Ancienne élève · Pédagogie 2019</div>
-                  </div>
-                </div>
-              </div>
-              <div class="testi-card">
-                <div class="testi-stars">★★★★★</div>
-                <p class="testi-text">Mon atelier de mécanique est le résultat direct de ma formation à l'Institut
-                  Kyeshero. J'ai appris non seulement les techniques mais aussi la discipline et le respect du travail
-                  bien fait. Merci à toute l'équipe pédagogique.</p>
-                <div class="testi-author">
-                  <div class="testi-avatar"
-                    style="background-image:url('https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=200&q=80')">
-                  </div>
-                  <div>
-                    <div class="testi-name">Janvier Bahati</div>
-                    <div class="testi-role">Ancien élève · Mécanique 2021</div>
-                  </div>
-                </div>
-              </div>
-              <div class="testi-card">
-                <div class="testi-stars">★★★★☆</div>
-                <p class="testi-text">La section Bio-Chimie de l'Institut Kyeshero m'a préparée pour des études
-                  supérieures en sciences de la santé. Les cours sont bien structurés et les enseignants maîtrisent
-                  parfaitement leurs matières.</p>
-                <div class="testi-author">
-                  <div class="testi-avatar"
-                    style="background-image:url('https://images.unsplash.com/photo-1580489944761-15a19d654956?w=200&q=80')">
-                  </div>
-                  <div>
-                    <div class="testi-name">Espérance Nzigire</div>
-                    <div class="testi-role">Étudiante · Bio-Chimie 2023</div>
-                  </div>
-                </div>
-              </div>
-              <div class="testi-card">
-                <div class="testi-stars">★★★★★</div>
-                <p class="testi-text">En tant que parent, je suis rassurée par la discipline et les valeurs chrétiennes
-                  enseignées à l'Institut Kyeshero. Ma fille est épanouie, motivée, et progresse chaque trimestre. C'est
-                  un cadre éducatif vraiment sérieux.</p>
-                <div class="testi-author">
-                  <div class="testi-avatar"
-                    style="background-image:url('https://images.unsplash.com/photo-1567532939604-b6b5b0db2604?w=200&q=80')">
-                  </div>
-                  <div>
-                    <div class="testi-name">Christine Zawadi</div>
-                    <div class="testi-role">Parent d'élève · Section Couture</div>
-                  </div>
-                </div>
-              </div>
-            </div> -->
-                    </div>
-                    <!-- <div class="testi-nav">
-            <button class="testi-btn" onclick="testiMove(-1)">
-              <</button>
-                <button class="testi-btn" onclick="testiMove(1)">></button>
-          </div> -->
-                    <div class="temoi">
-                        <button>
-                            <a href="temoignages.html">TEMOIGNER</a>
-                        </button>
-                    </div>
-
+                <div class="welcome-text">
+                    <h2>Ce que disent nos élèves &amp; parents</h2>
+                    <p>Les témoignages de notre communauté seront bientôt disponibles ici.</p>
+                    <a href="temoignages.html" class="btn-gold">Témoigner →</a>
                 </div>
             </section>
 
             <!-- ESPACE ÉLÈVE / PARENT -->
-            <section class="section section-bg reveal">
-                <div class="section-inner">
-                    <div class="section-head-row">
-                        <div>
-                            <div class="section-label">Portail numérique</div>
-                            <h2 class="section-h2">Votre Espace<br>Personnel</h2>
-                        </div>
-                        <p class="section-intro">Accédez à vos résultats, bulletins et informations scolaires depuis n'importe où, à tout moment.</p>
+            <section class="enseignants reveal">
+                <div class="ens-photo" style="background-image:url(./pictures/autresimages\ \(2\).jpg)">
+                    <div class="ens-card">
+                        <h3>Portail Élèves &amp; Parents</h3>
+                        <p>Consultez vos notes, bulletins de résultats, emploi du temps et toutes vos informations
+                            scolaires en ligne.</p>
+                        <a href="espacenumerique.html" class="link-arrow">Accéder →</a>
+                        <div class="ens-tag">Espace Numérique</div>
                     </div>
-                    <div class="espace-grid">
-                        <div class="espace-card">
-                            <div class="espace-card-bg" style="background-image:url('https://images.unsplash.com/photo-1523050854058-8df90110c9f1?w=800&q=80')">
-                            </div>
-                            <div class="espace-card-overlay"></div>
-                            <div class="espace-card-content">
-                                <div class="espace-badge">Espace Numerique</div>
-                                <h3>Portail<br>Élèves & Parents</h3>
-                                <p>Consultez vos notes, bulletins de résultats, emploi du temps et toutes vos informations scolaires en ligne.
-                                </p>
-                                <div class="espace-features">
-                                    <div class="espace-feat">Résultats & bulletins trimestriels</div>
-                                    <div class="espace-feat">Emploi du temps en ligne</div>
-                                    <div class="espace-feat">Notifications & annonces</div>
-                                    <div class="espace-feat">Paiement des frais scolaires</div>
-                                </div>
-                                <button class="espace-cta">
-                                    <a href="espacenumerique.html">Accéder → </a>
-                                </button>
-                            </div>
-                        </div>
+                    <div class="ens-orange">
+                        <p class="ens-orange-eyebrow">Votre espace personnel</p>
+                        <h3>Résultats, bulletins &amp; frais scolaires en ligne</h3>
                     </div>
                 </div>
             </section>
+
 
             <!-- GALERIE -->
             <section class="section reveal">
@@ -469,15 +392,19 @@
                         <a href="galerie.html" class="btn-gold" style="flex-shrink:0">Voir tout →</a>
                     </div>
                     <div class="gallery-masonry">
-                        <div class="gal-item" style="background-image:url(./pictures/back\ \(2\).jpg);height:220px;grid-column:span 2">
+                        <div class="gal-item"
+                            style="background-image:url(./pictures/back\ \(2\).jpg);height:220px;grid-column:span 2">
                         </div>
-                        <div class="gal-item" style="background-image:url(./pictures/IMG-20260624-WA0052.jpg);height:220px">
+                        <div class="gal-item"
+                            style="background-image:url(./pictures/IMG-20260624-WA0052.jpg);height:220px">
                         </div>
                         <div class="gal-item" style="background-image:url(./pictures/6eme.jpg);height:220px">
                         </div>
-                        <div class="gal-item" style="background-image:url(./pictures/couture.jpg);height:220px;grid-column:span 2">
+                        <div class="gal-item"
+                            style="background-image:url(./pictures/couture.jpg);height:220px;grid-column:span 2">
                         </div>
-                        <div class="gal-item" style="background-image:url(./pictures/autresimages\ \(4\).jpg);height:220px">
+                        <div class="gal-item"
+                            style="background-image:url(./pictures/autresimages\ \(4\).jpg);height:220px">
                         </div>
                         <div class="gal-item" style="background-image:url(./pictures/électricien.png);height:220px">
                         </div>
@@ -528,6 +455,7 @@
                         </div>
                     </div>
                 </div>
+                <span class="contact-circle" aria-hidden="true"></span>
             </div>
 
         </div>
@@ -536,15 +464,14 @@
         <footer id="main-footer">
             <div class="footer-grid">
                 <div class="footer-brand">
-                    <div class="logo">
+                    <div class="footer-logo-row">
                         <div class="logo-emblem">
                             <img src="./logos/logo (2).png" alt="logo">
-                            <p> École conventionnée protestante de la 8e CEPAC, formant depuis 1997 les jeunes de Goma aux valeurs d'excellence, de discipline et de foi.
-                            </p>
                         </div>
-                        <div class="logo-text" style="filter:invert(1) brightness(2)">
-                        </div>
+                        <span class="footer-brand-name">Institut Kyeshero</span>
                     </div>
+                    <p class="footer-brand-desc">École conventionnée protestante de la 8e CEPAC, formant depuis 1997
+                        les jeunes de Goma aux valeurs d'excellence, de discipline et de foi.</p>
                     <div class="footer-socials">
                         <a href="#"><img src="./icons/book.png"></a>
                         <a href="#"><img src="./icons/x.png"></a>
@@ -587,7 +514,7 @@
                 <span>&copy; 2026 Institut Kyeshero de Goma — Tous droits réservés</span>
                 <div class="footer-motto">
                     <span style="font-size:13px;color:rgba(255,255,255,.5)">
-                        Développé par Josué Mukandirwa | EbenJosh Tech & Services
+                        Conçu par EbenJosh Tech & Services
                     </span>
                 </div>
             </div>

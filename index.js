@@ -1,150 +1,203 @@
-/* ──────────────── HERO SLIDER ──────────────── */
-    var hSlides = document.querySelectorAll('.hslide');
-    var hDots = document.getElementById('heroDots');
-    var hCur = 0, hTimer;
+/* ===========================================================
+   INSTITUT KYESHERO — index.js
+   =========================================================== */
 
-    (function initDots() {
-      hSlides.forEach(function (_, i) {
-        var d = document.createElement('div');
-        d.className = 'hdot' + (i === 0 ? ' active' : '');
-        d.onclick = function () { heroGo(i) };
-        hDots.appendChild(d);
-      });
-    })();
+document.addEventListener("DOMContentLoaded", () => {
+  initNavbarScroll();
+  initMobileNav();
+  initHeroSlideshow();
+  initScrollProgress();
+  initRevealOnScroll();
+  initCountUp();
+});
 
-    function heroGo(n) {
-      hSlides[hCur].classList.remove('active');
-      hDots.children[hCur].classList.remove('active');
-      hCur = (n + hSlides.length) % hSlides.length;
-      hSlides[hCur].classList.add('active');
-      hDots.children[hCur].classList.add('active');
-    }
-    function heroSlide(d) { heroGo(hCur + d); resetHeroTimer() }
-    function resetHeroTimer() { clearInterval(hTimer); hTimer = setInterval(function () { heroSlide(1) }, 6000) }
-    hTimer = setInterval(function () { heroSlide(1) }, 6000);
+/* ---------- Navbar : ombre au scroll ---------- */
+function initNavbarScroll() {
+  const navbar = document.getElementById("navbar");
+  if (!navbar) return;
+  window.addEventListener(
+    "scroll",
+    () => {
+      navbar.classList.toggle("scrolled", window.scrollY > 10);
+    },
+    { passive: true },
+  );
+}
 
-    /* ──────────────── TÉMOIGNAGES ──────────────── */
-    var testiIdx = 0;
-    var testiCards;
+/* ---------- Menu mobile ---------- */
+function initMobileNav() {
+  // Overlay créé dynamiquement pour fermer le menu au clic à l'extérieur
+  const overlay = document.createElement("div");
+  overlay.className = "nav-overlay";
+  overlay.id = "navOverlay";
+  document.body.appendChild(overlay);
+  overlay.addEventListener("click", closeMobileNav);
+}
 
-    function initTesti() {
-      testiCards = document.querySelectorAll('.testi-card');
-    }
-    function testiMove(d) {
-      if (!testiCards) initTesti();
-      var visible = window.innerWidth < 900 ? 1 : 3;
-      var max = testiCards.length - visible;
-      testiIdx = Math.max(0, Math.min(testiIdx + d, max));
-      var cardW = testiCards[0].offsetWidth + 24;
-      document.getElementById('testiTrack').style.transform = 'translateX(-' + testiIdx * cardW + 'px)';
-    }
+function openMobileNav() {
+  document.getElementById("mobileNav")?.classList.add("open");
+  document.getElementById("navOverlay")?.classList.add("open");
+  document.body.style.overflow = "hidden";
+}
 
-    /* ──────────────── NAVIGATION ──────────────── */
-    var currentView = 'home';
-    var views = ['home', 'actualites', 'galerie', 'apropos', 'sections', 'contact'];
+function closeMobileNav() {
+  document.getElementById("mobileNav")?.classList.remove("open");
+  document.getElementById("navOverlay")?.classList.remove("open");
+  document.body.style.overflow = "";
+}
 
-    function goTo(id) {
-      // toggle pages
-      var isEspace = (id === 'espace' || id === 'inscriptions');
+// Ferme le menu mobile si on clique un lien à l'intérieur
+document.addEventListener("click", (e) => {
+  if (e.target.closest(".mobile-nav a")) closeMobileNav();
+});
 
-      document.getElementById('page-main').style.display = isEspace ? 'none' : 'block';
-      document.getElementById('page-espace').style.display = isEspace ? 'block' : 'none';
-      document.getElementById('main-footer').style.display = isEspace ? 'none' : 'block';
+/* ---------- Navigation interne (logo, boutons hero) ----------
+   Fait défiler vers une section de la page si son id existe,
+   sinon redirige vers la page correspondante (ex: 'sections' -> sections.html) */
+function goTo(target) {
+  if (target === "home") {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+    return;
+  }
+  const byId =
+    document.getElementById(target) || document.getElementById("sec-" + target);
+  if (byId) {
+    byId.scrollIntoView({ behavior: "smooth", block: "start" });
+    return;
+  }
+  // Pas d'ancre correspondante sur cette page : va vers la page dédiée
+  window.location.href = target + ".html";
+}
 
-      if (!isEspace) {
-        views.forEach(function (v) {
-          var el = document.getElementById('view-' + v);
-          if (el) el.style.display = (v === id) ? 'block' : 'none';
-        });
-        // If id is 'inscriptions' map to 'contact'
-        if (id === 'inscriptions') {
-          document.getElementById('view-contact').style.display = 'block';
+/* ---------- Hero : slideshow + points de navigation ---------- */
+function initHeroSlideshow() {
+  const slides = document.querySelectorAll(".hslide");
+  const dotsWrap = document.getElementById("heroDots");
+  if (!slides.length || !dotsWrap) return;
+
+  let current = 0;
+  let timer = null;
+
+  // Génère les points
+  slides.forEach((_, i) => {
+    const dot = document.createElement("span");
+    if (i === 0) dot.classList.add("active");
+    dot.addEventListener("click", () => goToSlide(i));
+    dotsWrap.appendChild(dot);
+  });
+  const dots = dotsWrap.querySelectorAll("span");
+
+  function goToSlide(index) {
+    slides[current].classList.remove("active");
+    dots[current].classList.remove("active");
+    current = (index + slides.length) % slides.length;
+    slides[current].classList.add("active");
+    dots[current].classList.add("active");
+  }
+
+  function nextSlide() {
+    goToSlide(current + 1);
+  }
+
+  function startAutoplay() {
+    stopAutoplay();
+    timer = setInterval(nextSlide, 4000);
+  }
+  function stopAutoplay() {
+    if (timer) clearInterval(timer);
+  }
+
+  startAutoplay();
+
+  // Pause au survol pour laisser le temps de lire
+  const heroEl = document.querySelector(".hero");
+  if (heroEl) {
+    heroEl.addEventListener("mouseenter", stopAutoplay);
+    heroEl.addEventListener("mouseleave", startAutoplay);
+  }
+
+  // Expose pour d'éventuels boutons flèches réactivés plus tard
+  window.heroSlide = (dir) => goToSlide(current + dir);
+}
+
+/* ---------- Barre de progression de lecture ---------- */
+function initScrollProgress() {
+  const bar = document.getElementById("progress");
+  if (!bar) return;
+  window.addEventListener(
+    "scroll",
+    () => {
+      const scrollTop = window.scrollY;
+      const docHeight =
+        document.documentElement.scrollHeight - window.innerHeight;
+      const pct = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+      bar.style.width = pct + "%";
+    },
+    { passive: true },
+  );
+}
+
+/* ---------- Apparition des sections au scroll ---------- */
+function initRevealOnScroll() {
+  const items = document.querySelectorAll(".reveal");
+  if (!items.length) return;
+
+  if (!("IntersectionObserver" in window)) {
+    items.forEach((el) => el.classList.add("in-view"));
+    return;
+  }
+
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("in-view");
+          observer.unobserve(entry.target);
         }
-        currentView = id;
-        // update nav
-        document.querySelectorAll('.nav-links a').forEach(function (a) { a.classList.remove('active') });
-        var nl = document.getElementById('nl-' + id);
-        if (nl) nl.classList.add('active');
-        // mobile bar
-        document.querySelectorAll('.mbar-item').forEach(function (m) { m.classList.remove('active') });
-      }
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-      initReveal();
-    }
-
-    /* ──────────────── MOBILE NAV ──────────────── */
-    function openMobileNav() { document.getElementById('mobileNav').classList.add('open') }
-    function closeMobileNav() { document.getElementById('mobileNav').classList.remove('open') }
-
-    /* ──────────────── ESPACE LOGIN ──────────────── */
-    function switchTab(t) {
-      ['eleve', 'parent', 'admin'].forEach(function (tab) {
-        document.getElementById('tab-' + tab).classList.toggle('active', tab === t);
-        document.getElementById('form-' + tab).style.display = (tab === t) ? 'block' : 'none';
       });
-    }
-    function clearErr() {
-      document.querySelectorAll('.err-box').forEach(function (e) { e.classList.remove('show') });
-    }
-    function doLogin(type) {
-      var err = document.getElementById('err-' + type);
-      err.classList.add('show');
-    }
+    },
+    { threshold: 0.15, rootMargin: "0px 0px -60px 0px" },
+  );
 
-    /* ──────────────── SCROLL REVEAL ──────────────── */
-    function initReveal() {
-      var els = document.querySelectorAll('.reveal');
-      var obs = new IntersectionObserver(function (entries) {
-        entries.forEach(function (e) {
-          if (e.isIntersecting) e.target.classList.add('visible');
-        });
-      }, { threshold: .12 });
-      els.forEach(function (el) { obs.observe(el) });
+  items.forEach((el) => observer.observe(el));
+}
+
+/* ---------- Compteurs animés (bande statistiques) ---------- */
+function initCountUp() {
+  const counters = document.querySelectorAll(".count-up");
+  if (!counters.length) return;
+
+  const animate = (el) => {
+    const target = parseInt(el.dataset.target, 10) || 0;
+    const duration = 1400;
+    const start = performance.now();
+
+    function step(now) {
+      const progress = Math.min((now - start) / duration, 1);
+      const eased = 1 - Math.pow(1 - progress, 3); // ease-out cubic
+      el.textContent = Math.round(eased * target);
+      if (progress < 1) requestAnimationFrame(step);
+      else el.textContent = target;
     }
-    initReveal();
+    requestAnimationFrame(step);
+  };
 
-    /* ──────────────── SCROLL PROGRESS ──────────────── */
-    window.addEventListener('scroll', function () {
-      var prog = document.getElementById('progress');
-      var s = window.scrollY;
-      var h = document.documentElement.scrollHeight - window.innerHeight;
-      prog.style.width = (h > 0 ? (s / h * 100) : 0) + '%';
+  if (!("IntersectionObserver" in window)) {
+    counters.forEach(animate);
+    return;
+  }
 
-      // sticky nav shadow
-      var nav = document.getElementById('navbar');
-      nav.classList.toggle('scrolled', s > 60);
-    });
-
-    /* ──────────────── COUNT UP ──────────────── */
-    function countUp() {
-      document.querySelectorAll('.count-up').forEach(function (el) {
-        var target = parseInt(el.getAttribute('data-target'));
-        var dur = 1800;
-        var start = null;
-        function step(ts) {
-          if (!start) start = ts;
-          var progress = Math.min((ts - start) / dur, 1);
-          var val = Math.floor(progress * target);
-          el.textContent = val.toLocaleString('fr-FR');
-          if (progress < 1) requestAnimationFrame(step);
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          animate(entry.target);
+          observer.unobserve(entry.target);
         }
-        requestAnimationFrame(step);
       });
-    }
+    },
+    { threshold: 0.4 },
+  );
 
-    /* trigger countUp when stats band visible */
-    var statsBandObserved = false;
-    var sbObs = new IntersectionObserver(function (entries) {
-      if (entries[0].isIntersecting && !statsBandObserved) {
-        statsBandObserved = true;
-        countUp();
-      }
-    }, { threshold: .3 });
-    var sb = document.querySelector('.stats-band');
-    if (sb) sbObs.observe(sb);
-
-    /* ──────────────── ANNONCE TRACK DUPLICATE ──────────────── */
-    // already duplicated in HTML for seamless loop
-
-    /* init */
-    initTesti();
+  counters.forEach((el) => observer.observe(el));
+}

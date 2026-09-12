@@ -5,11 +5,40 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1.0" />
     <title>A propos</title>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet" />
     <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="./pictures/logos/logoshaut2.png">
 </head>
 
 <body>
+
+    <!-- ═══ PRÉCHARGEUR ═══ -->
+    <div id="site-preloader">
+        <div class="preloader-inner">
+            <div class="preloader-ring"></div>
+            <img src="./logos/logo (2).png" alt="Institut Kyeshero" class="preloader-logo">
+        </div>
+        <p class="preloader-text">Chargement…</p>
+    </div>
+    <script>
+        (function () {
+            var pre = document.getElementById('site-preloader');
+            if (!pre) return;
+            function hide() {
+                pre.classList.add('loaded');
+                setTimeout(function () { pre.remove(); }, 600);
+            }
+            if (document.readyState === 'complete') {
+                hide();
+            } else {
+                window.addEventListener('load', hide);
+                setTimeout(hide, 8000); // filet de sécurité si la connexion est très lente
+            }
+        })();
+    </script>
+
     <div id="progress"></div>
     <div id="page-main">
 
@@ -19,10 +48,10 @@
                 <div class="logo-emblem">
                     <img src="./logos/IMG-20260512-WA0002.jpg" alt="logo">
                 </div>
-                <div class="logo-text">
+                <!-- <div class="logo-text">
                     <h1>Institut Kyeshero</h1>
                     <p>Conscience dans le travail et la discipline</p>
-                </div>
+                </div> -->
             </div>
             <div class="nav-links" id="navLinks">
                 <a href="index.html">Accueil</a>
@@ -46,10 +75,10 @@
                     <div class="logo-emblem">
                         <img src="./logos/logo (2).png" alt="logo">
                     </div>
-                    <div class="logo-text" style="filter:invert(1) brightness(2)">
+                    <!-- <div class="logo-text" style="filter:invert(1) brightness(2)">
                         <h1>Institut Kyeshero</h1>
                         <p>Conscience dans le travail et la discipline</p>
-                    </div>
+                    </div> -->
                 </div>
                 <button class="mob-close" onclick="closeMobileNav()">✕</button>
             </div>
@@ -64,88 +93,122 @@
         </div>
 
         <div id="view-apropos">
-            <div style="background:var(--navy);padding:48px;color:#fff;text-align:center">
-                <div class="section-label" style="justify-content:center;color:var(--gold-light)">Notre Histoire</div>
-                <h1 class="section-h2" style="color:#fff">À Propos de l'Institut</h1>
-                <p style="color:rgba(255,255,255,.7)">Connaissez l'Institut Kyeshero, son histoire et sa mission</p>
-            </div>
+            <section class="page-hero">
+                <div class="page-hero-media" style="background-image:url(./pictures/6eme.jpg)"></div>
+                <span class="page-hero-circle" aria-hidden="true"></span>
+                <span class="page-hero-circle-2" aria-hidden="true"></span>
+                <div class="page-hero-inner">
+                    <div class="hero-eyebrow">Notre Histoire</div>
+                    <h1>À Propos de <em>l'Institut</em></h1>
+                    <p>Connaissez l'Institut Kyeshero, son histoire et sa mission</p>
+                </div>
+            </section>
             <section class="section">
                 <div class="section-inner">
                     <div>
                         <div class="section-label">Identité</div>
                         <h2 class="section-h2">Ecole Conventionnée Protestante</h2>
-                        <p style="font-size:15px;line-height:1.9;color:var(--muted);margin-bottom:20px">L'Institut Kyeshero est une école conventionnée protestante de la coordination des écoles de la
+                        <div class="apropos-photo"
+                            style="background-image:url(./pictures/background.webp);margin:20px 0 24px">
+                        </div>
+                        <p style="font-size:15px;line-height:1.9;color:var(--text);margin-bottom:20px">L'Institut
+                            Kyeshero est une école conventionnée protestante de la coordination des écoles de la
                             <strong>8e CEPAC
-                                Nord-Kivu/Goma</strong>, de l'Église Philadelphie. Il a été créé sous l'arrêté d'agrément <strong>N°
-                                MINEPSP/CABMIN/001/02370/92</strong>.</p>
-                        <p style="font-size:15px;line-height:1.9;color:var(--muted);margin-bottom:20px">Fondé en
+                                Nord-Kivu/Goma</strong>, de l'Église Philadelphie. Il a été créé sous l'arrêté
+                            d'agrément <strong>N°
+                                MINEPSP/CABMIN/001/02370/92</strong>.
+                        </p>
+                        <p style="font-size:15px;line-height:1.9;color:var(--text);margin-bottom:20px">Fondé en
                             <strong>septembre
-                                1997</strong> sous la direction de Monsieur MUITI LUKONGE Jonas, l'école a débuté avec seulement 4 classes. Aujourd'hui elle accueille plus de 2 000 élèves répartis en 4 sections professionnelles
+                                1997</strong> sous la direction de Monsieur MUITI LUKONGE Jonas, l'école a débuté avec
+                            seulement 4 classes. Aujourd'hui elle accueille plus de 2 000 élèves répartis en 4 sections
+                            professionnelles
                             y compris l'education de base.
                         </p>
-                        <p style="font-size:15px;line-height:1.9;color:var(--muted)">Depuis 2009, l'école est dirigée par le Préfet
-                            <strong>MUHIMA SALUMU KABIKA</strong>, qui œuvre pour l'amélioration constante de la qualité pédagogique.
+                        <p style="font-size:15px;line-height:1.9;color:var(--text)">Depuis 2009, l'école est dirigée par
+                            le Préfet
+                            <strong>MUHIMA SALUMU KABIKA</strong>, qui œuvre pour l'amélioration constante de la qualité
+                            pédagogique.
                         </p>
 
                         <div style="margin-top:36px;display:grid;grid-template-columns:1fr 1fr;gap:16px">
-                            <div style="background:var(--off);border-radius:8px;padding:20px;border-left:3px solid var(--gold)">
-                                <div style="font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:1px;margin-bottom:4px">
-                                    N° SECOPE</div>
-                                <div style="font-size:16px;font-weight:700;color:var(--navy)">6121213</div>
+                            <div class="info-tile">
+                                <span class="info-tile-icon">#</span>
+                                <div>
+                                    <div class="info-tile-label">N° SECOPE</div>
+                                    <div class="info-tile-value">6121213</div>
+                                </div>
                             </div>
-                            <div style="background:var(--off);border-radius:8px;padding:20px;border-left:3px solid var(--gold)">
-                                <div style="font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:1px;margin-bottom:4px">
-                                    Adresse postale</div>
-                                <div style="font-size:16px;font-weight:700;color:var(--navy)">200/Goma</div>
+                            <div class="info-tile">
+                                <span class="info-tile-icon">📮</span>
+                                <div>
+                                    <div class="info-tile-label">Adresse postale</div>
+                                    <div class="info-tile-value">200/Goma</div>
+                                </div>
                             </div>
-                            <div style="background:var(--off);border-radius:8px;padding:20px;border-left:3px solid var(--gold)">
-                                <div style="font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:1px;margin-bottom:4px">
-                                    Régime</div>
-                                <div style="font-size:16px;font-weight:700;color:var(--navy)">Gong unique</div>
+                            <div class="info-tile">
+                                <span class="info-tile-icon">🔔</span>
+                                <div>
+                                    <div class="info-tile-label">Régime</div>
+                                    <div class="info-tile-value">Gong unique</div>
+                                </div>
                             </div>
-                            <div style="background:var(--off);border-radius:8px;padding:20px;border-left:3px solid var(--gold)">
-                                <div style="font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:1px;margin-bottom:4px">
-                                    Horaires</div>
-                                <div style="font-size:16px;font-weight:700;color:var(--navy)">7h30 - 13h30</div>
+                            <div class="info-tile">
+                                <span class="info-tile-icon">🕐</span>
+                                <div>
+                                    <div class="info-tile-label">Horaires</div>
+                                    <div class="info-tile-value">7h30 - 13h30</div>
+                                </div>
                             </div>
                         </div>
                     </div>
                     <div>
                         <div class="section-label">Localisation</div>
                         <h2 class="section-h2">Au Cœur de Goma</h2>
-                        <p style="font-size:15px;line-height:1.9;color:var(--muted);margin-bottom:28px">L'Institut Kyeshero se trouve dans la ville de Goma, commune de Goma, Quartier KYESHERO, à côté de l'Église Philadelphie de la 8e CEPAC, l'Hôpital de la 8e CEPAC et l'enclos de l'ULPGL.</p>
-                        <div style="background:var(--navy);border-radius:12px;padding:32px;color:#fff">
-                            <h4 style="color:var(--gold-light);margin-bottom:20px;font-family:var(--ff-display);font-size:18px">
+                        <p style="font-size:15px;line-height:1.9;color:var(--text);margin-bottom:28px">L'Institut
+                            Kyeshero se trouve dans la ville de Goma, commune de Goma, Quartier KYESHERO, à côté de
+                            l'Église Philadelphie de la 8e CEPAC, l'Hôpital de la 8e CEPAC et l'enclos de l'ULPGL.</p>
+                        <div style="background:var(--ink);border-radius:12px;padding:32px;color:#fff">
+                            <h4
+                                style="color:var(--gold-light);margin-bottom:20px;font-family:var(--font-head);font-size:18px">
                                 Évolution des effectifs</h4>
                             <div style="display:flex;flex-direction:column;gap:10px">
                                 <div style="display:flex;justify-content:space-between;align-items:center">
                                     <span style="font-size:13px;color:rgba(255,255,255,.7)">2004-2005</span>
-                                    <div style="flex:1;margin:0 12px;height:6px;background:rgba(255,255,255,.1);border-radius:3px">
-                                        <div style="width:75%;height:100%;background:var(--gold-light);border-radius:3px">
+                                    <div
+                                        style="flex:1;margin:0 12px;height:6px;background:rgba(255,255,255,.1);border-radius:3px">
+                                        <div
+                                            style="width:75%;height:100%;background:var(--gold-light);border-radius:3px">
                                         </div>
                                     </div>
                                     <span style="font-size:13px;font-weight:700">1 525</span>
                                 </div>
                                 <div style="display:flex;justify-content:space-between;align-items:center">
                                     <span style="font-size:13px;color:rgba(255,255,255,.7)">2007-2008</span>
-                                    <div style="flex:1;margin:0 12px;height:6px;background:rgba(255,255,255,.1);border-radius:3px">
-                                        <div style="width:100%;height:100%;background:var(--gold-light);border-radius:3px">
+                                    <div
+                                        style="flex:1;margin:0 12px;height:6px;background:rgba(255,255,255,.1);border-radius:3px">
+                                        <div
+                                            style="width:100%;height:100%;background:var(--gold-light);border-radius:3px">
                                         </div>
                                     </div>
                                     <span style="font-size:13px;font-weight:700">2 152</span>
                                 </div>
                                 <div style="display:flex;justify-content:space-between;align-items:center">
                                     <span style="font-size:13px;color:rgba(255,255,255,.7)">2009-2010</span>
-                                    <div style="flex:1;margin:0 12px;height:6px;background:rgba(255,255,255,.1);border-radius:3px">
-                                        <div style="width:87%;height:100%;background:var(--gold-light);border-radius:3px">
+                                    <div
+                                        style="flex:1;margin:0 12px;height:6px;background:rgba(255,255,255,.1);border-radius:3px">
+                                        <div
+                                            style="width:87%;height:100%;background:var(--gold-light);border-radius:3px">
                                         </div>
                                     </div>
                                     <span style="font-size:13px;font-weight:700">1 871</span>
                                 </div>
                                 <div style="display:flex;justify-content:space-between;align-items:center">
                                     <span style="font-size:13px;color:rgba(255,255,255,.7)">2011-2012</span>
-                                    <div style="flex:1;margin:0 12px;height:6px;background:rgba(255,255,255,.1);border-radius:3px">
-                                        <div style="width:76%;height:100%;background:var(--gold-light);border-radius:3px">
+                                    <div
+                                        style="flex:1;margin:0 12px;height:6px;background:rgba(255,255,255,.1);border-radius:3px">
+                                        <div
+                                            style="width:76%;height:100%;background:var(--gold-light);border-radius:3px">
                                         </div>
                                     </div>
                                     <span style="font-size:13px;font-weight:700">1 631</span>
@@ -155,21 +218,251 @@
                     </div>
                 </div>
             </section>
+
+            <!-- Mot du Préfet -->
+            <section class="section section-bg">
+                <div class="section-inner">
+                    <div class="section-label">Message</div>
+                    <h2 class="section-h2" style="margin-bottom:32px">Mot du Préfet</h2>
+                    <div class="prefet-card">
+                        <!-- 📸 Remplacer l'image ci-dessous : déposer la photo du Préfet
+                             dans le dossier /pictures sous le nom "prefet.jpg" -->
+                        <div class="prefet-photo" style="background-image:url(./pictures/prefet.jpg)">
+                            <span class="prefet-photo-fallback">MMP</span>
+                        </div>
+                        <div class="prefet-text">
+                            <p class="prefet-quote">« Éduquer un enfant, c'est préparer un homme debout. À l'Institut
+                                Kyeshero, nous croyons que la discipline, le travail et la foi forment un triangle
+                                indissociable : c'est de cet équilibre que naissent des élèves solides, capables de
+                                servir leur famille, leur ville et leur pays. Chaque élève qui franchit nos portes est
+                                accueilli avec la même exigence et la même affection. »</p>
+                            <div class="prefet-signature">
+                                <strong>MURATSA MINEMBE PASCAL</strong>
+                                <span>Préfet des Études, Institut Kyeshero</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Règlement d'Ordre Intérieur -->
+            <section class="section">
+                <div class="section-inner">
+                    <div class="section-label">Discipline & vie scolaire</div>
+                    <h2 class="section-h2" style="margin-bottom:14px">Règlement d'Ordre Intérieur</h2>
+                    <p style="font-size:15px;line-height:1.9;color:var(--text);max-width:70ch;margin-bottom:32px">
+                        L'Institut Kyeshero fait partie des écoles conventionnées protestantes. Le but de cette école
+                        est l'éducation intégrale : formation intellectuelle, chrétienne, humaine et civique. Voici
+                        l'ensemble des règles qui encadrent la vie de tous les élèves.</p>
+
+                    <div class="reglement-accordion">
+
+                        <details class="reglement-item">
+                            <summary><span class="reglement-num">I</span> La régularité, la ponctualité</summary>
+                            <div class="reglement-body">
+                                <p><strong>Art.1 —</strong> Les cours commencent à 7h30 et prennent fin à 12h45 pour les
+                                    classes de l'éducation de base (7e et 8e) et à 14h25 pour les grandes classes (1ère,
+                                    2e, 3e et 4e). Tous les élèves sont tenus de se présenter à l'école 15 minutes avant
+                                    les cours. Au premier coup de sifflet, les élèves se mettent en rang devant leurs
+                                    classes respectives en silence. Chaque lundi, la 1ère heure de cours est consacrée
+                                    au culte et au rassemblement.</p>
+                                <p><strong>Art.2 —</strong></p>
+                                <p>a) Les retards et les absences doivent obligatoirement être justifiés dans le cahier
+                                    de communication par les responsables de l'élève, ou par la présentation d'un
+                                    certificat médical en cas de maladie.</p>
+                                <p>b) Un retardataire ne peut s'introduire dans la classe sans autorisation écrite de la
+                                    direction.</p>
+                                <p>c) Après la première heure, aucun élève n'est accepté au cours s'il n'est muni d'une
+                                    autorisation d'entrer en classe. Un billet de sortie est prévu à cette fin.</p>
+                                <p><strong>Art.3 —</strong> Toute circulation inutile, tout vagabondage dans la cour de
+                                    l'école pendant les heures de cours sont strictement interdits.</p>
+                                <p><strong>Art.4 —</strong> Il est interdit de quitter l'école pendant les heures de
+                                    cours sans l'autorisation des autorités scolaires.</p>
+                                <div class="reglement-sanctions">
+                                    <span class="reglement-sanctions-label">Sanctions</span>
+                                    <ul>
+                                        <li>Refus ou négligence de s'aligner : corvée à l'école.</li>
+                                        <li>Retard non justifié : perte de la première heure avec corvée à l'école après
+                                            cours.</li>
+                                        <li>Une absence injustifiée : corvée pendant une journée à l'école.</li>
+                                        <li>3 absences non justifiées peuvent entraîner une exclusion de 7 jours.</li>
+                                        <li>7 absences consécutives injustifiées : exclusion définitive.</li>
+                                        <li>Sécher le cours (les brosseurs) : 6 jours d'exclusion.</li>
+                                        <li>L'école buissonnière : 6 jours d'exclusion.</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </details>
+
+                        <details class="reglement-item">
+                            <summary><span class="reglement-num">II</span> Documents obligatoires de l'élève</summary>
+                            <div class="reglement-body">
+                                <p><strong>Art.5 — Journal de classe :</strong> il doit être apporté chaque jour en
+                                    classe et tenu régulièrement à jour, afin d'être présenté à la demande du
+                                    professeur, de la direction ou d'un parent.</p>
+                                <p><strong>Art.6 — Cahier de communication :</strong> les infractions commises par
+                                    l'élève, ainsi que d'autres informations le concernant, y sont consignées et
+                                    transmises à son responsable. Ce document important doit être présenté à toute
+                                    demande de l'autorité scolaire.</p>
+                                <p><strong>Art.7 —</strong> Tout élève doit se munir en classe des cahiers, des livres
+                                    et des objets classiques exigés par le professeur pour son ou ses cours.</p>
+                                <p><strong>Art.8 —</strong> Il est interdit d'apporter en classe des livres et documents
+                                    immoraux ou étrangers aux cours, ainsi que tout objet susceptible de troubler le bon
+                                    ordre.</p>
+                            </div>
+                        </details>
+
+                        <details class="reglement-item">
+                            <summary><span class="reglement-num">III</span> La tenue vestimentaire</summary>
+                            <div class="reglement-body">
+                                <p><strong>Art.9 —</strong> Le port de l'uniforme « Bleu-Blanc » est obligatoire chaque
+                                    jour ouvrable à l'école.</p>
+                                <p><strong>Art.10 —</strong> Le port des pagnes, grosses ceintures, de la perruque, des
+                                    boucles d'oreilles, des pantalons et mini-jupes est interdit aux filles. Les vestes,
+                                    les mentaux, les pardessus sont également interdits, ainsi que les maquillages et
+                                    les colorations des lèvres ou des ongles.</p>
+                                <div class="reglement-sanctions">
+                                    <span class="reglement-sanctions-label">Sanctions</span>
+                                    <ul>
+                                        <li>Port d'habits et/ou d'objets interdits : exclusion de 6 jours avec
+                                            confiscation définitive de l'objet saisi.</li>
+                                        <li>Tenue vestimentaire fantaisiste ou négligée : exclusion de 3 jours.</li>
+                                        <li>Maquillage et coquetterie : exclusion de 8 jours.</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </details>
+
+                        <details class="reglement-item">
+                            <summary><span class="reglement-num">IV</span> La langue de l'école</summary>
+                            <div class="reglement-body">
+                                <p><strong>Art.11 —</strong> Le français et l'anglais sont les langues d'usage
+                                    autorisées pour les communications à l'école.</p>
+                                <div class="reglement-sanctions">
+                                    <span class="reglement-sanctions-label">Sanction</span>
+                                    <ul>
+                                        <li>L'usage d'une langue autre que le français ou l'anglais : corvée à l'école.
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </details>
+
+                        <details class="reglement-item">
+                            <summary><span class="reglement-num">V</span> Des biens & du patrimoine de l'école</summary>
+                            <div class="reglement-body">
+                                <p><strong>Art.12 —</strong> Un soin particulier est apporté aux manuels et aux objets
+                                    mis à la disposition de l'élève.</p>
+                                <p><strong>Art.13 —</strong> Tous les dégâts causés aux bâtiments, aux meubles ou
+                                    matériels scolaires, quels qu'ils soient, doivent être réparés aux frais du
+                                    responsable de l'élève ayant causé le dommage.</p>
+                                <div class="reglement-sanctions">
+                                    <span class="reglement-sanctions-label">Sanctions</span>
+                                    <ul>
+                                        <li>Perdre un livre ou un objet de l'école : le coupable en paie deux.</li>
+                                        <li>Destruction méchante : exclusion définitive.</li>
+                                        <li>Dommage sur les bâtiments ou les meubles : exclusion de 6 jours et
+                                            réparation des dommages.</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </details>
+
+                        <details class="reglement-item">
+                            <summary><span class="reglement-num">VI</span> La propreté et l'hygiène</summary>
+                            <div class="reglement-body">
+                                <p><strong>Art.14 —</strong> La propreté du corps et des habits est obligatoire pour
+                                    tout élève de l'Institut Kyeshero.</p>
+                                <p><strong>Art.15 —</strong> La classe sera balayée et nettoyée régulièrement suivant un
+                                    rôle arrêté par le chef de classe. Ne rien jeter dans les classes ou la cour de
+                                    l'école.</p>
+                                <p><strong>Art.16 —</strong> Il est strictement interdit de faire ses besoins aux
+                                    alentours de l'école.</p>
+                                <div class="reglement-sanctions">
+                                    <span class="reglement-sanctions-label">Sanctions</span>
+                                    <ul>
+                                        <li>Refus de balayer la classe : corvée à l'école pendant 3 jours.</li>
+                                        <li>Port d'habit malpropre ou déchiré : exclusion d'un jour.</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </details>
+
+                        <details class="reglement-item">
+                            <summary><span class="reglement-num">VII</span> Fautes disciplinaires</summary>
+                            <div class="reglement-body">
+                                <p><strong>Art.17 —</strong> Sont passibles d'une sanction immédiate, sans convocation
+                                    du conseil de discipline, les fautes disciplinaires notoires suivantes :</p>
+                                <div class="reglement-sanctions">
+                                    <ul>
+                                        <li>L'inscription sur production de faux document : exclusion.</li>
+                                        <li>Le vol : exclusion.</li>
+                                        <li>La détention de documents pornographiques : exclusion.</li>
+                                        <li>La consommation de boissons alcoolisées, cigarettes, chanvre et autres
+                                            stupéfiants : exclusion.</li>
+                                        <li>Le faux et usage de faux : exclusion.</li>
+                                        <li>Le désaffichage des documents officiels : exclusion.</li>
+                                        <li>L'état de grossesse : exclusion.</li>
+                                        <li>L'absence non justifiée de 7 jours consécutifs : exclusion.</li>
+                                        <li>Le port d'une arme à feu ou blanche à l'école : exclusion.</li>
+                                        <li>La bagarre en classe, dans les enceintes de l'école ou à ses environs :
+                                            exclusion.</li>
+                                        <li>La désobéissance ou le refus d'ordre envers une autorité de l'école :
+                                            exclusion.</li>
+                                        <li>L'escalade du mur, de l'entrée ou de la fenêtre de l'école : exclusion.</li>
+                                        <li>La présentation d'un faux nom : exclusion.</li>
+                                        <li>La tricherie : exclusion.</li>
+                                        <li>Le port d'un téléphone : confiscation.</li>
+                                        <li>La corruption : exclusion.</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </details>
+
+                        <details class="reglement-item">
+                            <summary><span class="reglement-num">VIII</span> Disposition finale</summary>
+                            <div class="reglement-body">
+                                <p><strong>Art.18 —</strong> Toute exclusion entraîne la cote « mauvaise » à la période.
+                                    L'élève exclu d'un cours est coté zéro pour le devoir ou l'interrogation concerné.
+                                    En outre, cet élève ne sera réadmis en classe qu'à condition d'être accompagné de
+                                    son parent.</p>
+                                <p><strong>Art.19 —</strong> En cas de récidive pour une infraction commise plusieurs
+                                    fois par l'élève, celui-ci sera exclu définitivement de l'école.</p>
+                                <p><strong>Art.20 —</strong> L'élève est exclu à la fin de l'année scolaire s'il a
+                                    obtenu soit deux appréciations « mauvais », soit trois appréciations « médiocre » en
+                                    conduite.</p>
+                                <p><strong>Art.21 —</strong> L'exclusion temporaire d'un élève de plusieurs cours relève
+                                    de la compétence du chef d'établissement, du directeur des études ou de discipline
+                                    quand le préfet est absent.</p>
+                                <p><strong>Art.22 —</strong> L'exclusion définitive d'un élève est prononcée après que
+                                    ce dernier ait été entendu par le conseil de discipline, composé du chef
+                                    d'établissement, des directeurs des études et de discipline, et du titulaire de la
+                                    classe.</p>
+                                <p><strong>Art.23 —</strong> Le présent règlement entre en vigueur le jour de sa
+                                    divulgation et doit être appliqué par tous les élèves, indistinctement.</p>
+                                <p style="margin-top:18px;color:var(--text);font-style:italic">Fait à Goma — La
+                                    direction</p>
+                            </div>
+                        </details>
+
+                    </div>
+                </div>
+            </section>
+
         </div>
 
         <!-- FOOTER -->
         <footer id="main-footer">
             <div class="footer-grid">
                 <div class="footer-brand">
-                    <div class="logo">
+                    <div class="footer-logo-row">
                         <div class="logo-emblem">
                             <img src="./logos/logo (2).png" alt="logo">
-                            <p> École conventionnée protestante de la 8e CEPAC, formant depuis 1997 les jeunes de Goma aux valeurs d'excellence, de discipline et de foi.
-                            </p>
                         </div>
-                        <div class="logo-text" style="filter:invert(1) brightness(2)">
-                        </div>
+                        <span class="footer-brand-name">Institut Kyeshero</span>
                     </div>
+                    <p class="footer-brand-desc">École conventionnée protestante de la 8e CEPAC, formant depuis 1997
+                        les jeunes de Goma aux valeurs d'excellence, de discipline et de foi.</p>
                     <div class="footer-socials">
                         <a href="#"><img src="./icons/book.png"></a>
                         <a href="#"><img src="./icons/x.png"></a>
@@ -212,7 +505,7 @@
                 <span>&copy; 2026 Institut Kyeshero de Goma — Tous droits réservés</span>
                 <div class="footer-motto">
                     <span style="font-size:13px;color:rgba(255,255,255,.5)">
-                        Développé par Josué Mukandirwa | EbenJosh Tech & Services
+                        Conçu par EbenJosh Tech & Services
                     </span>
                 </div>
             </div>

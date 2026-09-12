@@ -1,202 +1,262 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="fr">
 
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Espace Numérique</title>
-    <link rel="stylesheet" href="numerique.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Espace Numérique</title>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap"
+    rel="stylesheet" />
+  <link rel="stylesheet" href="numerique.css" />
+  <link rel="icon" href="./pictures/logos/logoshaut2.png">
 </head>
 
 <body>
+  <!-- ═══ PRÉCHARGEUR ═══ -->
+  <div id="site-preloader">
+    <div class="preloader-inner">
+      <div class="preloader-ring"></div>
+      <img src="./logos/logo (2).png" alt="Institut Kyeshero" class="preloader-logo" />
+    </div>
+    <p class="preloader-text">Chargement…</p>
+  </div>
+  <script>
+    (function () {
+      var pre = document.getElementById("site-preloader");
+      if (!pre) return;
+      function hide() {
+        pre.classList.add("loaded");
+        setTimeout(function () {
+          pre.remove();
+        }, 600);
+      }
+      if (document.readyState === "complete") {
+        hide();
+      } else {
+        window.addEventListener("load", hide);
+        setTimeout(hide, 8000); // filet de sécurité si la connexion est très lente
+      }
+    })();
+  </script>
 
-    <!-- ════════════ PAGE LOGIN ════════════ -->
-    <div id="page-login">
-        <div class="topbar">
-            <span>Institut Kyeshero</span>
-            <a href="index.html">← Retour au site</a>
-        </div>
-
-        <div class="login-hero">
-            <div class="shield">
-                <img src="./logos/logo (2).png" alt="logo institut kyeshero">
-            </div>
-            <h1>Espace Numérique</h1>
-            <div class="badge">Accès sécurisé - Élèves & Parents uniquement</div>
-        </div>
-
-        <div class="login-card">
-            <h2>Connexion</h2>
-            <p class="sub">Entrez vos informations pour accéder à vos résultats.</p>
-
-            <div class="field">
-                <label>Numéro Matricule</label>
-                <input type="text" id="matricule" placeholder="Ex : A0010" maxlength="10" oninput="this.value=this.value.toUpperCase()" />
-                <div class="hint">Format : lettre(s) + chiffres · ex: A0010</div>
-            </div>
-
-            <div class="field">
-                <label>Date de Naissance</label>
-                <input type="date" id="datenais" />
-            </div>
-            <div class="field">
-                <label>Classe</label>
-                <select id="classe">
-                  <option value="">— Sélectionnez votre classe —</option>
-                </select>
-            </div>
-
-            <button class="btn-login" id="btnLogin" onclick="seConnecter()">SE CONNECTER</button>
-
-            <div class="error-box" id="errorBox">
-                <div class="ico">🚫</div>
-                <p id="errorMsg"><strong>Informations incorrectes</strong>Matricule, date de naissance ou classe invalide. Vérifiez vos données.</p>
-            </div>
-
-            <div class="blocked-box" id="blockedBox">
-                <div class="lock"><img src="./icons/cad.png" alt="cadenas"></div>
-                <h3>Accès Bloqué</h3>
-                <p>Trop de tentatives incorrectes.<br>Réessayez dans :</p>
-                <div class="countdown" id="countdown">30</div>
-                <p>secondes — ou contactez l'administration.</p>
-            </div>
-
-            <div class="attempts" id="attemptsInfo" style="display:none;">
-                Tentatives restantes : <span id="attemptsLeft">2</span>
-            </div>
-        </div>
+  <!-- ════════════ PAGE LOGIN ════════════ -->
+  <div id="page-login">
+    <div class="topbar">
+      <span>Institut Kyeshero</span>
+      <a href="index.html">← Retour au site</a>
     </div>
 
-    <!-- ════════════ PAGE DASHBOARD ════════════ -->
-    <div id="page-dashboard">
-
-        <div class="dash-header">
-            <div class="logo">
-                <span>Espace Numérique</span>
-            </div>
-            <button class="btn-logout" onclick="seDeconnecter()">Déconnexion</button>
-        </div>
-
-        <div class="dash-body">
-
-            <!-- Profil -->
-            <div class="profil-card">
-                <div class="avatar">👤</div>
-                <div class="profil-info">
-                    <h2 id="nomEleve">—</h2>
-                    <p id="matriculeEleve">Matricule : —</p>
-                    <p id="classeEleve">Classe : —</p>
-                    <div class="profil-badges">
-                        <span class="badge-pill">Année 2025-2026</span>
-                        <span class="badge-pill" id="sectionBadge">—</span>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Informations financières et sessions (toujours visible) -->
-            <div class="info-card" id="infoCard">
-                <h3>Informations financières & sessions</h3>
-                <div class="info-grid">
-                    <div class="info-item">
-                        <span class="label">Montant payé</span>
-                        <span class="value paye" id="montantPaye">— FC</span>
-                    </div>
-                    <div class="info-item">
-                        <span class="label">Reste à payer</span>
-                        <span class="value reste" id="resteAPayer">— FC</span>
-                    </div>
-                    <div class="info-item">
-                        <span class="label">Nombre de sessions</span>
-                        <span class="value" id="nbSessions">—</span>
-                    </div>
-                    <div class="info-item">
-                        <span class="label">Cours de la session</span>
-                        <div class="cours-list" id="coursSession">—</div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Carte des notes -->
-            <div class="notes-card">
-                <div class="card-head">
-                    <h3>Bulletin des Notes - Année 2025-2026</h3>
-                    <div class="session-tabs" id="sessionTabs">
-                        <button class="active" data-session="1" onclick="changerSession(1)">1ère Session</button>
-                        <button data-session="2" onclick="changerSession(2)">2ème Session</button>
-                    </div>
-                </div>
-
-                <!-- Zone des notes (affichée si frais payés) -->
-                <div id="notesContent">
-                    <div class="stats-row">
-                        <div class="stat-card excel">
-                            <div class="num" id="statMoy">—</div>
-                            <div class="lbl">Moyenne Générale / 20</div>
-                        </div>
-                        <div class="stat-card green">
-                            <div class="num" id="statRang">—</div>
-                            <div class="lbl">Rang dans la classe</div>
-                        </div>
-                        <div class="stat-card or">
-                            <div class="num" id="statMatieres">—</div>
-                            <div class="lbl">Matières</div>
-                        </div>
-                        <div class="stat-card" id="statResultat">
-                            <div class="num" id="statStatut">—</div>
-                            <div class="lbl">Statut</div>
-                        </div>
-                    </div>
-
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>Matière</th>
-                                <th>Note / 20</th>
-                                <th>Appréciation</th>
-                                <th>Progression</th>
-                            </tr>
-                        </thead>
-                        <tbody id="notesBody">
-                        </tbody>
-                    </table>
-
-                    <div style="padding:20px 24px;">
-                        <div class="result-footer">
-                            <div>
-                                <div class="big" id="moyFinale">—/20</div>
-                                <div class="lbl">Moyenne Générale</div>
-                            </div>
-                            <div>
-                                <div class="big" id="rangFinal">—</div>
-                                <div class="lbl">Rang / <span id="totalEleves">—</span> élèves</div>
-                            </div>
-                            <div>
-                                <div class="mention-finale" id="mentionFinale">—</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Message de blocage (affiché si frais impayés) -->
-                <div id="blockedNotesMsg" style="display:none;">
-                    <div class="blocked-notes-msg">
-                        <div class="big-lock"><img src="./icons/cadenas.png"></div>
-                        <h3>Accès aux résultats bloqué</h3>
-                        <p>Veuillez passer à la comptabilité pour finaliser les frais scolaires afin d'avoir l'accès à vos résultats de fin d'année.</p>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Absences -->
-            <div class="absences-card">
-                <h3>Absences & Présences</h3>
-                <div id="absencesList"></div>
-            </div>
-
-        </div>
+    <div class="login-hero">
+      <div class="shield">
+        <img src="./logos/logo (2).png" alt="logo institut kyeshero" />
+      </div>
+      <!-- <h1>Espace Numérique</h1> -->
+      <div class="badge">Accès sécurisé - Élèves & Parents uniquement</div>
     </div>
 
-    <script src="numerique.js"></script>
+    <div class="login-card">
+      <div class="login-tabs" role="tablist">
+        <button type="button" class="tab-btn active" id="tabEleve" onclick="basculerOnglet('eleve')">
+          <span class="tab-ico"></span> Élève
+        </button>
+        <button type="button" class="tab-btn" id="tabParent" onclick="basculerOnglet('parent')">
+          <span class="tab-ico"></span> Parent
+        </button>
+      </div>
+
+      <!-- ── Formulaire Élève ── -->
+      <div id="formEleve" class="login-form">
+        <h2>Connexion Élève</h2>
+        <p class="sub">
+          Entrez vos informations pour accéder à vos résultats.
+        </p>
+
+        <div class="field">
+          <label>Numéro Matricule</label>
+          <input type="text" id="matricule" placeholder="Ex : E2026" maxlength="10"
+            oninput="this.value = this.value.toUpperCase()" />
+          <div class="hint">Format : E suivi de 4 chiffres </div>
+        </div>
+
+        <div class="field">
+          <label>Date de Naissance</label>
+          <input type="date" id="datenais" />
+        </div>
+        <div class="field">
+          <label>Classe</label>
+          <select id="classe">
+            <option value="">— Sélectionnez votre classe —</option>
+          </select>
+        </div>
+
+        <button class="btn-login" id="btnLogin" onclick="seConnecter()">
+          SE CONNECTER
+        </button>
+      </div>
+
+      <!-- ── Formulaire Parent ── -->
+      <div id="formParent" class="login-form" style="display: none">
+        <h2>Connexion Parent</h2>
+        <p class="sub">
+          Le tableau de bord parent complet arrive très bientôt.
+        </p>
+
+        <!-- <div class="field">
+            <label>Adresse Email</label>
+            <input
+              type="email"
+              id="emailParent"
+              placeholder="Ex : parent@email.com"
+            />
+          </div>
+
+          <div class="field">
+            <label>Nombre d'enfants</label>
+            <select id="nbEnfants" onchange="genererChampsEnfants()">
+              <option value="">— Sélectionnez —</option>
+              <option value="1">1 enfant</option>
+              <option value="2">2 enfants</option>
+              <option value="3">3 enfants</option>
+              <option value="4">4 enfants</option>
+              <option value="5">5 enfants</option>
+            </select>
+          </div>
+
+          <div id="champsEnfants"></div>
+
+          <div class="verif-anim" id="verifAnim">
+            <div class="verif-spinner"></div>
+            <p class="verif-title">Vérification du lien email ↔ matricule…</p>
+            <div class="verif-list" id="verifList"></div>
+          </div>
+
+          <button
+            class="btn-login"
+            id="btnLoginParent"
+            onclick="seConnecterParent()"
+          >
+            SE CONNECTER
+          </button> -->
+
+        <div class="success-box" id="successBox">
+          <div class="ico">✅</div>
+          <p id="successMsg">
+            <strong>Vérification réussie</strong>Votre adresse a bien été
+            reconnue.
+          </p>
+        </div>
+      </div>
+
+      <!-- ── Zones communes (erreur / info / blocage) ── -->
+      <div class="error-box" id="errorBox">
+        <div class="ico">🚫</div>
+        <p id="errorMsg">
+          <strong>Informations incorrectes</strong>Matricule, date de
+          naissance ou classe invalide. Vérifiez vos données.
+        </p>
+      </div>
+
+      <div class="info-box" id="infoBox">
+        <div class="ico">🛠️</div>
+        <p id="infoMsg">
+          <strong>Bientôt disponible</strong>La connexion parent est en cours
+          de finalisation.
+        </p>
+      </div>
+
+      <div class="blocked-box" id="blockedBox">
+        <div class="lock"><img src="./icons/cad.png" alt="cadenas" /></div>
+        <h3>Accès Bloqué</h3>
+        <p>Trop de tentatives incorrectes.<br />Réessayez dans :</p>
+        <div class="countdown" id="countdown">30</div>
+        <p>secondes — ou contactez l'administration.</p>
+      </div>
+
+      <div class="attempts" id="attemptsInfo" style="display: none">
+        Tentatives restantes : <span id="attemptsLeft">2</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ════════════ PAGE DASHBOARD ════════════ -->
+  <div id="page-dashboard">
+    <div class="dash-header">
+      <div class="logo">
+        <span>Espace Numérique</span>
+      </div>
+      <button class="btn-logout" onclick="seDeconnecter()">
+        Déconnexion
+      </button>
+    </div>
+
+    <div class="dash-body">
+      <!-- Profil -->
+      <div class="profil-card">
+        <div class="avatar" id="avatarEleve">👤</div>
+        <div class="profil-info">
+          <h2 id="nomEleve">—</h2>
+          <p id="matriculeEleve">Matricule : —</p>
+          <p id="classeEleve">Classe : —</p>
+          <p id="telParentEleve">Contact parent : —</p>
+          <div class="profil-badges">
+            <span class="badge-pill">Année 2026-2027</span>
+            <span class="badge-pill" id="sectionBadge">—</span>
+            <span class="badge-pill" id="statutBadge">—</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Frais scolaires (toujours visible) -->
+      <div class="info-card" id="infoCard">
+        <h3>Frais scolaires</h3>
+        <div class="info-grid">
+          <div class="info-item">
+            <span class="label">Frais annuels</span>
+            <span class="value" id="fraisAnnuels">— FC</span>
+          </div>
+          <div class="info-item">
+            <span class="label">Montant payé</span>
+            <span class="value paye" id="montantPaye">— FC</span>
+          </div>
+          <div class="info-item">
+            <span class="label">Reste à payer</span>
+            <span class="value reste" id="resteAPayer">— FC</span>
+          </div>
+          <div class="info-item">
+            <span class="label">Dernier versement</span>
+            <span class="value" id="dernierVersement">—</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Carte des notes -->
+      <div class="notes-card">
+        <div class="card-head">
+          <h3>Bulletin des Notes</h3>
+          <span>Année 2026-2027</span>
+        </div>
+
+        <div class="notes-placeholder">
+          <div class="placeholder-ico">🗂️</div>
+          <h3>Résultats bientôt disponibles</h3>
+          <p>
+            Le module de bulletin numérique est en cours de finalisation. Vos
+            notes s'afficheront ici dès qu'elles seront publiées par
+            l'administration.
+          </p>
+        </div>
+      </div>
+
+      <!-- Absences -->
+      <div class="absences-card">
+        <h3>Absences & Présences</h3>
+        <div id="absencesList"></div>
+      </div>
+    </div>
+  </div>
+
+  <script src="numerique.js"></script>
 </body>
 
 </html>
